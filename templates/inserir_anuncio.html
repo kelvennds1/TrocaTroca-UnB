@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inserir Anúncio</title>
+  <link rel="stylesheet" type="text/css" href="../static/styles/inserir_anun.css">
+  <script src="../static/js/inserir.js"></script>
+</head>
+<body>
+  <h1>O que você está anunciando?</h1>
+  
+  <form id="ad-form">
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" required>
+    
+    <label for="description">Descrição:</label>
+    <textarea id="description" name="description" required></textarea>
+    
+    <label for="category">Categoria:</label>
+    <select id="category" name="category" onchange="checkCategory()" required>
+      <option value="">Selecione uma categoria</option>
+      <option value="eletrônicos">Eletrônicos</option>
+      <option value="vestuário">Vestuário</option>
+      <option value="móveis">Móveis</option>
+      <option value="animais">Animais</option>
+      <!-- Adicione mais opções de categorias, se necessário -->
+    </select>
+    
+    <label for="race" id="race-label" style="display: none;">Raça:</label>
+    <input type="text" id="race" name="race" style="display: none;">
+    
+    <label for="brand" id="brand-label">Marca:</label>
+    <input type="text" id="brand" name="brand">
+    
+    <label for="condition">Condição:</label>
+    <div class="condition-options">
+      <input type="radio" id="new" name="condition" value="new" required>
+      <label for="new">Novo</label>
+      <input type="radio" id="used" name="condition" value="used" required>
+      <label for="used">Usado</label>
+    </div>
+    
+    <label for="year">Ano Adquirido:</label>
+    <select id="year" name="year">
+      <option value="">Selecione o ano de aquisição</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
+      <!-- Adicione mais opções de anos, se necessário -->
+    </select>
+    
+    <label for="photos">Fotos:</label>
+    <input type="file" id="photos" name="photos" accept="image/*" capture="camera" multiple>
+    
+    <button type="submit">Publicar Anúncio</button>
+  </form>
+</body>
+</html>
