@@ -37,8 +37,8 @@
             </div>
             <div class="item-desc">
               <div class="name-year">
-                <p>{{ item.name }}</p>
-                <p>{{ item.year_acquired }}</p>
+                <div class="item-name">{{ item.name }}</div>
+                <div class="item-year">{{ item.year_acquired }}</div>
               </div>
               <span class="item-type">Troca</span>
             </div>
@@ -62,8 +62,8 @@
             </div>
             <div class="item-desc">
               <div class="name-year">
-                <p>{{ item.name }}</p>
-                <p>{{ item.year_acquired }}</p>
+                <div class="item-name">{{ item.name }}</div>
+                <div class="item-year">{{ item.year_acquired }}</div>
               </div>
               <span class="item-type">Troca</span>
             </div>
@@ -71,14 +71,14 @@
           {% endfor %}
         </div>
       </div>
+      <div class="last-container"></div>
       <div class="navigation">
         <nav class="navbar">
-          <a href="#"><img src="../static/img/nav-bar/home.svg" alt=""></a></li>
-          <a href="#"><img src="../static/img/nav-bar/explorar.svg" alt=""></a></li>
-          <a href="#"><img src="../static/img/nav-bar/inserir.svg" alt=""></a></li>
-          <a href="#"><img src="../static/img/nav-bar/curtidos.svg" alt=""></a></li>
-            <li><a href="#"><img src="../static/img/nav-bar/estudo.svg" alt=""></a></li>
-          </ul>
+          <a href="#"><img class="vectors" src="../static/img/nav-bar/home.svg" alt=""></a>
+          <a href="#"><img class="explorar" src="../static/img/nav-bar/explorar.svg" alt=""></a>
+          <div class="meio-nav"><a href="#"><img class="vectors" src="../static/img/nav-bar/inserir.svg" alt=""></a></div>
+          <a href="#"><img class="vectors" src="../static/img/nav-bar/curtidos.svg" alt=""></a>
+          <a href="#"><img class="vectors" src="../static/img/nav-bar/estudo.svg" alt=""></a>
         </nav>
       </div>
     </div>

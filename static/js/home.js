@@ -1,50 +1,65 @@
+// Obtém o elemento do carrossel
 const carousel = document.querySelector('.carousel');
 
-let isDragging = false;
-let startPos = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
+let isDragging = false; // Indica se o usuário está arrastando o carrossel
+let startPos = 0; // Posição inicial do toque
+let currentTranslate = 0; // Valor atual do deslocamento
 
-carousel.addEventListener('mousedown', dragStart);
-carousel.addEventListener('touchstart', dragStart);
-carousel.addEventListener('mouseup', dragEnd);
-carousel.addEventListener('mouseleave', dragEnd);
-carousel.addEventListener('touchend', dragEnd);
-carousel.addEventListener('mousemove', drag);
-carousel.addEventListener('touchmove', drag);
+// Evento de toque inicial
+carousel.addEventListener('touchstart', touchStart);
 
-function dragStart(event) {
-  if (event.type === 'touchstart') {
-    startPos = event.touches[0].clientX;
-  } else {
-    startPos = event.clientX;
-    event.preventDefault();
-  }
-
+function touchStart(e) {
   isDragging = true;
-  // Captura a posição inicial do mouse ou toque
-  prevTranslate = currentTranslate;
+  startPos = e.touches[0].clientX; // Obtém a posição inicial do toque
+  currentTranslate = getTranslateX(); // Obtém o valor atual do deslocamento
 }
 
-function drag(event) {
-  if (isDragging) {
-    let currentPosition = 0;
-    if (event.type === 'touchmove') {
-      currentPosition = event.touches[0].clientX;
-    } else {
-      currentPosition = event.clientX;
-    }
+// Evento de movimento do toque
+carousel.addEventListener('touchmove', touchMove);
 
-    // Calcula o quanto o mouse ou toque se moveu em relação à posição inicial
-    const diff = currentPosition - startPos;
-    // Atualiza a posição de rolagem do carrossel
-    currentTranslate = prevTranslate + diff;
+function touchMove(e) {
+  if (!isDragging) return;
 
-    // Aplica a tradução para mover o carrossel
-    carousel.style.transform = `translateX(${currentTranslate}px)`;
+  const currentPosition = e.touches[0].clientX; // Obtém a posição atual do toque
+  const diff = currentPosition - startPos; // Calcula a diferença de posição
+
+  // Atualiza o deslocamento do carrossel de acordo com a diferença de posição
+  const newTranslate = currentTranslate + diff;
+  setTranslateX(newTranslate);
+
+  // Restringe o deslocamento para evitar que os itens desapareçam
+  const maxTranslate = getMaxTranslate();
+  const minTranslate = 0;
+
+  if (newTranslate > maxTranslate) {
+    setTranslateX(maxTranslate);
+  } else if (newTranslate < minTranslate) {
+    setTranslateX(minTranslate);
   }
 }
 
-function dragEnd() {
+// Evento de finalização do toque
+carousel.addEventListener('touchend', touchEnd);
+
+function touchEnd() {
   isDragging = false;
+}
+
+// Função auxiliar para obter o valor atual de deslocamento do carrossel
+function getTranslateX() {
+  const transformMatrix = window.getComputedStyle(carousel).getPropertyValue('transform');
+  const matrix = new DOMMatrixReadOnly(transformMatrix);
+  return matrix.m41;
+}
+
+// Função auxiliar para definir o valor de deslocamento do carrossel
+function setTranslateX(value) {
+  carousel.style.transform = `translateX(${value}px)`;
+}
+
+// Função auxiliar para obter o valor máximo de deslocamento
+function getMaxTranslate() {
+  const containerWidth = carousel.offsetWidth;
+  const contentWidth = carousel.scrollWidth;
+  return containerWidth - contentWidth;
 }
