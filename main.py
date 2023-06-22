@@ -30,6 +30,7 @@ app.secret_key = '342342354525351sadad1eqd'  # Chave secreta para gerar sessões
 engine = create_engine('mysql+pymysql://admin:troca2023@trocatroca-db.co7hqdo9x7ll.us-east-1.rds.amazonaws.com:3306/trocatroca0')
 Session = sessionmaker(bind=engine)
 
+
 @app.route('/logout')
 def logout():
     # Remova as informações do usuário da sessão
@@ -41,14 +42,13 @@ def logout():
 
 @app.route('/home')
 def home():
+    
     # Verifique se o usuário está logado
     if 'user_id' in session:
-        # Recupere as informações do usuário da sessão
-        user_id = session['user_id']
-        username = session['username']
-        
-        # Exiba as informações do usuário na página de boas-vindas
-        return render_template('home.html', username=username)
+        sessio = Session()
+        items = sessio.query(Item).all()
+        return render_template('home.html', items=items)
+
     else:
         # Se o usuário não estiver logado, redirecione para a página de login
         return redirect('/login')

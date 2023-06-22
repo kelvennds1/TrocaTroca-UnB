@@ -23,7 +23,7 @@
     </header>
     <div class="main-page-content">
       <div class="new-arrivals">
-        <span class="novos-items">Novos Items</span>
+        <span class="novos-items">Novos Items de Troca</span>
         <a class="veja-mais" href="#">Veja mais!</a>
       </div>
 
@@ -33,7 +33,7 @@
           {% for item in items %}
           <div class="item">
             <div class="imagem-wrapper ">
-              <!-- <img src="../static/img/Splash screen.png" class="imagem" alt=""> -->
+              <img src="../static/img/Splash screen.png" class="imagem" alt="">
             </div>
             <div class="item-desc">
               <div class="name-year">
@@ -47,6 +47,40 @@
         </div>
       </div>
 
+      <div class="new-arrivals">
+        <span class="novos-items">Novas Doações</span>
+        <a class="veja-mais" href="#">Veja mais!</a>
+      </div>
+
+      <div class="carousel-container2">
+        <div class="carousel">
+          <!-- Itens do carrossel -->
+          {% for item in items %}
+          <div class="item">
+            <div class="imagem-wrapper ">
+              <img src="../static/img/Splash screen.png" class="imagem" alt="">
+            </div>
+            <div class="item-desc">
+              <div class="name-year">
+                <p>{{ item.name }}</p>
+                <p>{{ item.year_acquired }}</p>
+              </div>
+              <span class="item-type">Troca</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="navigation">
+        <nav class="navbar">
+          <a href="#"><img src="../static/img/nav-bar/home.svg" alt=""></a></li>
+          <a href="#"><img src="../static/img/nav-bar/explorar.svg" alt=""></a></li>
+          <a href="#"><img src="../static/img/nav-bar/inserir.svg" alt=""></a></li>
+          <a href="#"><img src="../static/img/nav-bar/curtidos.svg" alt=""></a></li>
+            <li><a href="#"><img src="../static/img/nav-bar/estudo.svg" alt=""></a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
     <script src="../static/js/home.js"></script>  
   </body>

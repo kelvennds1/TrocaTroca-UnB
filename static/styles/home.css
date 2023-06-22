@@ -98,7 +98,6 @@ header{
 }  
 .carousel {
     width: fit-content;
-    height: 100%;
     display: flex;
     flex-direction: row; /* Define a direção horizontal */
     align-items: center;
@@ -169,7 +168,6 @@ header{
 }
 .carousel-container2{
   width: 100vw;
-  margin-bottom: 500px;
   max-width: 800px; /* Defina o tamanho máximo desejado para o carrossel */
   margin: 0 auto; /* Centralizar o carrossel horizontalmente */
   overflow-x: scroll; /* Habilita a rolagem horizontal */
@@ -177,12 +175,30 @@ header{
   scrollbar-width: none; /* Remover a barra de rolagem */
   -ms-overflow-style: none; /* Remover a barra de rolagem*/
 } 
-.nav-bar{
-    position: absolute;
-    align-self: center;
-    justify-self: center;
-    background-color: #0BAD59;
-    
+.navigation {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    min-height: 100px;
+    bottom: 20px;
 }
+.navbar {
+    width: 95%;
+    padding: 10px;
+    border-radius: 22px;
+    background-color: #0BAD59;
+}
+.navbar ul {
+    margin: 0;
+    padding: 0;
+}
+  
+  .navbar li {
+    padding: 0;
+  }
+  
+  .navbar li a {
+    text-decoration: none;
+  }
+  
