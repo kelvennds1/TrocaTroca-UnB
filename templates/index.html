@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../static/styles/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu PWA Flask</title>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <script>
@@ -15,9 +16,11 @@
                 });
         }
     </script>
+    <script src="../static/js/index.js"></script>
 </head>
 <body>
-    <h1>Bem-vindo ao meu aplicativo Flask!</h1>
-    <a href="{{ url_for('login') }}">Login</a>
+    <span class = "circle-image">
+        <img class="imagem" src= "/static/img/Splash screen.png" />
+    </span>
 </body>
 </html>

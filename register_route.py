@@ -20,9 +20,10 @@ def registrar():
         passw = request.form['passw']
         name = request.form['name']
         passw = request.form['passw']
+        email = request.form['email']
 
         # Crie uma nova instância da classe Person com os dados do formulário
-        nova_person = Person(idperson=ultimo_id+1, registration=registration, passw=passw, name=name)
+        nova_person = Person(idperson=ultimo_id+1, registration=registration, passw=passw, name=name, email = email)
 
         # Inicie uma nova sessão do SQLAlchemy
         try:
@@ -33,7 +34,7 @@ def registrar():
             session.commit()
 
             # Redirecione para uma página de sucesso ou faça algo similar
-            return redirect('/registro_sucesso')
+            return redirect('/login')
 
         except Exception as e:
             # Lide com possíveis erros durante o registro

@@ -11,7 +11,7 @@
                 <div class="back-button">
                     <!-- <div class="back-button-child"></div> -->
                     <img class="back-button-img" alt="" src="../static/img/back-button.svg" />
-                    <!-- <a href="{{ url_for('login') }}" class="back-link"></a> -->
+                    <!-- <a href="/login" class="back-link"></a> -->
                 </div>
                 <div class="troca-troca">TrocaTroca</div>
             </header>
@@ -25,10 +25,10 @@
                         <input type="text" placeholder="Matrícula" class="login-input" id="registration" name="registration">
                     </div>
                     <div class="input-container">
-                        <input type="email" placeholder="Email" class="login-input" id="passw" name="passw">
+                        <input type="email" placeholder="Email" class="login-input" id="hash_email" name="email">
                     </div>
                     <div class="input-container">
-                        <input type="password" placeholder="Senha" class="login-input" id="passw" name="passw">
+                        <input type="password" placeholder="Senha" class="login-input" id="hash_passw" name="passw">
                     </div>
                     <div class="input-container">
                         <input type="file" placeholder="Selecione uma foto" class="login-input" id="profile-photo" name="profile-photo">
@@ -36,7 +36,7 @@
                     <button type="submit" class="register-btn" id="register-btn">Cria Conta</button>
                 </div>
             </form>
-            <p class="login-text">Ainda não tem uma conta? <a href="{{ url_for('login') }}" class="login-link">Registre-se</a></p>
+            <p class="login-text">Já possui conta? <a href="/login" class="login-link">Entre</a></p>
         </div>
     </div>
     <div class="waves-container">

@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
-
-
 *{
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 body {
-
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -18,111 +15,107 @@ body {
   background-color: #F5F5F5;
 }
 .wrapper{
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .register-container {  
-    padding-left: 20px;
-    padding-right: 20px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 500px;
-    width: 80vh;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  width: 80vh;
+  height: 100vh;
 }
 header{
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    justify-content: space-between;
+  margin-top: 5vw;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-between;
 }
 .troca-troca{
-    font-style: normal;
-    font-weight: 800;
-    font-size: 32px;
-    font-family: 'Dosis';
-    font-feature-settings: 'kern' off;
-    color: #3C3C3C;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+  font-family: 'Dosis';
+  font-feature-settings: 'kern' off;
+  color: #3C3C3C;
 }
 .register-text{ 
-    margin-top: 20.054vw;
-    margin-bottom: 5vw;
-    font-family: 'Dosis';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 48px;
-    color: #3C3C3C;   
+  margin-top: 15.054vw;
+  margin-bottom: 5vw;
+  font-family: 'Dosis';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  color: #3C3C3C;   
 }
-  
-  .input-container {
-    display: flex;
-    margin-bottom: 15px;
-  }
-  
-  .login-input {
-    flex: 1;
-    padding: 10px;
-    width: 70vw;
-    border: 0;
-    background-color: #e9e9e9;
-    border-radius: 10px;
-    outline: none;
-    font-size: 20px;
-    font-family: 'Dosis';
-    font-weight: lighter;
-  }
-
+.input-container {
+  display: flex;
+  margin-bottom: 15px;
+}
+.login-input {
+  flex: 1;
+  padding: 10px;
+  width: 70vw;
+  border: 0;
+  background-color: #e9e9e9;
+  border-radius: 10px;
+  outline: none;
+  font-size: 20px;
+  font-family: 'Dosis';
+  font-weight: lighter;
+}
 .login-input::placeholder{
-    color: #717171;
-    font-family: 'Dosis';
-    font-weight:400;
-    font-size: 18px;
+  color: #717171;
+  font-family: 'Dosis';
+  font-weight:400;
+  font-size: 18px;
 }
-  
-  .register-btn {
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Rubik';
-    font-weight: bolder;
-    border-radius: 22px;
-    padding: 10px;
-    width: 90.092vw;
-    border: 0;
-    background: linear-gradient(97.86deg, #0cce6b, #066031);
-    position: absolute;
-    font-size: 24px;
-    color: #f5f5f5;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .login-text {
-    text-align: center;
-    margin-top: 22.054vw;
-    margin-bottom: 42.054vw;
-    font-size: 14px;
-    color: #8D8D8D;
-  }
-  
-  .login-link {
-    color: #0FE677;
-    font-weight: bold;
-    text-decoration: none;
-  }
+.register-btn {
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rubik';
+  font-weight: bolder;
+  border-radius: 22px;
+  padding: 10px;
+  width: 90.092vw;
+  max-width: 505px;
+  border: 0;
+  background: linear-gradient(97.86deg, #0cce6b, #066031);
+  position: absolute;
+  font-size: 24px;
+  color: #f5f5f5;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.login-text {
+  text-align: center;
+  margin-top: 22.054vw;
+  margin-bottom: 42.054vw;
+  font-size: 14px;
+  color: #8D8D8D;
+}
+.login-link {
+  color: #0FE677;
+  font-weight: bold;
+  text-decoration: none;
+}
+.waves-container {
+  padding: 0;
+  top: 90%;
+  position: fixed;
+  align-items: center;
+  height: 100px;
+  background: url('waves.svg') center bottom no-repeat;
+}
 
-  .waves-container {
-    padding: 0;
-    top: 90%;
-    position: fixed;
-    align-items: center;
-    height: 100px;
-    background: url('waves.svg') center bottom no-repeat;
-  }
-  
   

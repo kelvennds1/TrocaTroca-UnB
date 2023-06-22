@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/styles/home.css" />
+  </head>
+  <body>
+    <div class="home">
+      <header>
+        <div class="top">
+          <img class="user-pic-icon" alt="" src="../static/img/User pic.svg" />
+          <div class="message">
+            <p class="ola-user">Olá, {{ session['username'] }}!</p>
+            <p class="wellcome">Bem-vindo de volta!</p>
+          </div>
+          <img class="hamburger-icon" alt="" src="../static/img/Hamburger.svg" id="hamburgerIcon"/>
+        </div>
+        <div class="search-input">
+          <input class="search-bar" type="text" id="search-bar" placeholder="Pesquise por livros, violão e muito mais..."/>
+          <!-- <img src="../static/img/search.svg" class='searcha' alt=""> -->
+        </div>
+    </header>
+    <div class="main-page-content">
+      <div class="new-arrivals">
+        <span class="novos-items">Novos Items</span>
+        <a class="veja-mais" href="#">Veja mais!</a>
+      </div>
+
+      <div class="carousel-container">
+        <div class="carousel">
+          <!-- Itens do carrossel -->
+          {% for item in items %}
+          <div class="item">
+            <div class="imagem-wrapper ">
+              <!-- <img src="../static/img/Splash screen.png" class="imagem" alt=""> -->
+            </div>
+            <div class="item-desc">
+              <div class="name-year">
+                <p>{{ item.name }}</p>
+                <p>{{ item.year_acquired }}</p>
+              </div>
+              <span class="item-type">Troca</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+    <script src="../static/js/home.js"></script>  
+  </body>
+</html>
+
