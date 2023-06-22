@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  background-color: #F5F5F5;
+}
+.wrapper{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+   
+  }
+  
+  .login-container {
+    
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    width: 80vh;
+
+  }
+
+.unb-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+  /* Logo UnB */
+.unb-logo{
+
+  width: 95px;
+  height: 56px;
+  margin-right: 20px;
+}
+/* UnB | STI */
+.unb-sti{
+  width: 78px;
+  height: 32px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 32px;
+  color: #3532B1;
+}
+
+  .login-title {
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-family: 'Dosis';
+    font-weight: 800;
+    color: #008940;
+  }
+  
+  .input-container {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .login-input {
+    flex: 1;
+    padding: 10px;
+    width: 70vw;
+    border: 0;
+    background-color: #e9e9e9;
+    border-radius: 10px;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Dosis';
+    font-weight: lighter;
+  }
+
+.login-input::placeholder{
+    color: #717171;
+    font-family: 'Dosis';
+    font-weight:lighter;
+    font-size: 20px;
+}
+  
+  .login-btn {
+
+    padding: 10px 20px;
+    margin-top: -10px;
+    background-color: #3532B1;
+    border: none;
+    font-family: sans-serif;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: lighter;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  
+  .register-text {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #8D8D8D;
+  }
+  
+  .register-link {
+    color: #0FE677;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .waves-container {
+    padding: 0;
+    top: 90%;
+    position: fixed;
+    align-items: center;
+    height: 100px;
+    background: url('waves.svg') center bottom no-repeat;
+  }
+  
+  
