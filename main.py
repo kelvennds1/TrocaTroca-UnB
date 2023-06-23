@@ -66,7 +66,6 @@ def disp_troca():
     db = Session()
     try:
         anuncio = db.query(Person_adv_exch_item).filter_by(idpersonAdvExchItem = idanuncio ).first()
-        item = db.query(Item).filter_by(iditem = anuncio.item_iditem ).first()
         anunciante = db.query(Person).filter_by(idperson = anuncio.person_idperson ).first()
     except:
         print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
@@ -75,10 +74,11 @@ def disp_troca():
     db.close()
     try:
         item_foto = item.image_blob.decode('utf-8')
-        # anun_pfp = anunciante.image_blob.decode('utf-8')
-        anun_pfp = 'placeholdr🫥pic'
+        anun_pfp = anunciante.pfp_blob.decode('utf-8')
+        # anun_pfp = 'placeholdr🫥pic'
     except:
         item_foto ='"img 🫥"'
+        anun_pfp = anunciante.pfp_blob
         print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         print('ERRO em conversao de imagens item.image_blob e person.pfp_blob ')
         print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')

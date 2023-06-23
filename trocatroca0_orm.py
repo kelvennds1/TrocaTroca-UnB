@@ -11,6 +11,7 @@ class Person(Base):
     passw = Column(String(1000))
     name = Column(String(1000))
     email = Column(String(1000))
+    pfp_blob = Column(LargeBinary(length=(2**32)-1) )
 
 class Category(Base):
     __tablename__ = 'category'
