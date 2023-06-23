@@ -14,19 +14,42 @@
             </div>
             <div class="troca-troca">TrocaTroca</div>
         </header>
-    <div class="image-container">
-            <img src="data:image/jpeg;base64,{{ image_base64 | safe }}" alt="🫥 foto" width="500" height="600">    
-    </div>
-    <div class="content-container">
-        <!-- Place your strings or content below the image container -->
-        <!-- Ensure that the content-container has enough margin-top to avoid overlap with the image container -->
-        <p>Your content goes here.</p>
-    </div>
 
-        
-        
-        
-                <div class="waves-container">
+        <div class="image-container">
+                <img src="data:image/jpeg;base64,{{ image_base64 | safe }}" alt="🫥 foto" width="500" height="600">    
+        </div>
+
+        <div name-anuncio>anuncio_troca.name: &nbsp  ..{{ anuncio_troca.name or '-NOME ANUNCIO-' }}</div>
+        <div desc-anuncio>anuncio_troca.desc: &nbsp  ..{{ anuncio_troca.desc or '-NOME ANUNCIO-' }}</div>
+        <div>anuncio_troca.reason: &nbsp  ..{{ anuncio_troca.reason or '-NOME ANUNCIO-' }}</div>
+
+        <div class="content-container">
+            <br>Produto<br>
+            {{ item.name or '-' }}
+            <br>Modelo<br>
+            {{ item.model_color or '-' }}
+            <br>Ano adquirido:<br>
+            {{ item.year_acquired or '-' }}
+            <br>Condição<br>
+            {{ item.condition or '-' }}
+            <br>Preço de mercado<br>
+            R${{ anuncio_troca.market_price or '-' }} {# !TODO: only allow int #}
+            <br>Detalhes do produto: <br>
+            {{ item.desc or '-' }} {# !TODO: allow for desc to be image} #}
+        </div>
+
+        <div anunciante-container>
+            <div class="pfp-container">
+                    <img src="data:image/jpeg;base64,{{ anun_pfp | safe }}" alt="🫥 pfp anunciante" width="500" height="600">    
+            </div>
+            <br>Anunciante<br>
+            {{ anunciante.name or '-' }}
+            <br>Anunciante<br>
+            {{ anunciante.name or '-' }}
+
+        </div>
+
+        <div class="waves-container">
             <svg width="100vw" height="95" viewBox="0 0 414 95" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 45H17C35 45 69 45 104 50C138 54 173 62 207 60C242 58 276 45 311 39C345 33 380 33 397 33H414V95H397C380 95 345 95 311 95C276 95 242 95 207 95C173 95 138 95 104 95C69 95 35 95 17 95H0V45Z" fill="#0BAD59"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.585L17 16.585C35 20.585 69 29.585 104 35.585C138 41.585 173 45.585 207 37.585C242 29.585 276 8.585 311 2.585C345 -4.415 380 4.585 397 8.585L414 12.585V74.585H397C380 74.585 345 74.585 311 74.585C276 74.585 242 74.585 207 74.585C173 74.585 138 74.585 104 74.585C69 74.585 35 74.585 17 74.585H0V12.585Z" fill="#0BAD59" fill-opacity="0.75"/>

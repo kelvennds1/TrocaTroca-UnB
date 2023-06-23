@@ -6,7 +6,7 @@ from routes.register_route import registro_bp # Importe o blueprint de registro
 from routes.login_route import login_bp
 from routes.home_route import home_bp
 from trocatroca0_orm import *
-
+import base64
 #------------------------------------------------ Criar App -------------------------------------------------------------
 app = Flask(__name__)
 
@@ -44,50 +44,13 @@ def logout():
 @app.route('/inserir')
 def inserir():
     return render_template('inserir_anuncio.html')
-
-
-
-app.route('/insert')
-def insert_item():
-    image_path = 'path_to_image.jpg'  # Replace with the path to your image file
-    with open(image_path, 'rb') as image_file:
-        image_data = image_file.read()
-        image_base64 = base64.b64encode(image_data).decode('utf-8')
-
-    item = Item(name='Example Item', image_base64=image_base64)
-    db.session.add(item)
-    db.session.commit()
-    return 'Item inserted successfully!'
-
-@app.route('/blob')
-def display_items():
-    db = Session()
-    # items = db.query(Item).all()
-    item = db.query(Item).filter_by(iditem = 2)
-    db.close()
-    # image_blob = item.image_blob
-
-    # try:
-    #     # image_blob = cast(item.image_blob, LargeBinary)
-    #     # image_blob = item.image_blob.value if item.image_blob is not None else None
-    #     # str_base64 = image_blob.decode('utf-8') 
-    # except:
-    #     print('!!!error in img decoding')
-    #     str_base64 = 'img 🫥'
-    try:
-
-        image_blob = item.image_blob.decode('utf-8')
-    except:
-        image_blob = 'img 🫥'
-
-    return render_template('items.html', items=items)
-    # return render_template('item.html', item=item, image_base64=image_blob)
     
 # testa display de item, imagem
 @app.route('/itemunicoid2')
-def display():
+def display_item():
+    iditem = 2
     db = Session()
-    item = db.query(Item).filter_by(iditem = 2 ).first()
+    item = db.query(Item).filter_by(iditem=iditem).first()
     db.close()
     try:
         image_decoded = item.image_blob.decode('utf-8')
@@ -96,31 +59,31 @@ def display():
     return render_template('item.html', item=item, image_base64=image_decoded)
     
 
-@app.route('/items')
-def display_item():
-    db = Session() 
-    # items = db.query(Item).all()
-    item = db.query(Item).first()
-
-    # image_blob = item.image_blob
-
-    # try:
-    #     # image_blob = cast(item.image_blob, LargeBinary)
-    #     # image_blob = item.image_blob.value if item.image_blob is not None else None
-    #     # str_base64 = image_blob.decode('utf-8') 
-    # except:
-    #     print('!!!error in img decoding')
-    #     str_base64 = 'img 🫥'
+# pagina de anuncio de troca 
+@app.route('/anuncio_troca')
+def disp_troca():
+    idanuncio = 2 # !TODO: receive this as parameter
+    db = Session()
     try:
-
-        image_blob = item.value(item.first().image_blob)
-        image_blob = item.image_blob.decode('utf-8')
+        anuncio = db.query(Person_adv_exch_item).filter_by(idpersonAdvExchItem = idanuncio ).first()
+        item = db.query(Item).filter_by(iditem = anuncio.item_iditem ).first()
+        anunciante = db.query(Person).filter_by(idperson = anuncio.person_idperson ).first()
     except:
-        image_blob = 'img 🫥'
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print('ERRO em db.query() fetch anuncio, item e anunciante ')
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    db.close()
+    try:
+        item_foto = item.image_blob.decode('utf-8')
+        # anun_pfp = anunciante.image_blob.decode('utf-8')
+        anun_pfp = 'placeholdr🫥pic'
+    except:
+        item_foto ='"img 🫥"'
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print('ERRO em conversao de imagens item.image_blob e person.pfp_blob ')
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    return render_template('anuncio_troca.html', anuncio_troca=anuncio, item=item, image_base64=item_foto, anunciante=anunciante, anun_pfp=anun_pfp)
 
-    # return render_template('items.html', items=items)
-    return render_template('item.html', item=item, image_base64=image_blob)
-    
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
