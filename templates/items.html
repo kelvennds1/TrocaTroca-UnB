@@ -23,6 +23,8 @@
                 <th>Item ID</th>
                 <th>Name</th>
                 <th>Image Path</th>
+                <th>Image</th>
+                <th>Img b64</th>
                 <th>Model Color</th>
                 <th>Brand Species</th>
                 <th>Year Acquired</th>
@@ -35,28 +37,31 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
             <tr>
-                <td>{{ item.iditem }}</td>
-                <td>{{ item.name or '-' }}</td>
-                <td>{{ item.image_path or '-' }}</td>
-                <td>{{ item.image_blob or '-' }}</td>
-                <!-- {% if item.image_blob %}
-                    <img src="{{ url_for('display_image', item_id=item.iditem) }}" alt="Item Image">
-                {% else %}
-                    sem imagem?:((
-                {% endif %} -->
-                <td>{{ item.model_color or '-' }}</td>
-                <td>{{ item.brand_species or '-' }}</td>
-                <td>{{ item.year_acquired or '-' }}</td>
-                <td>{{ item.desc or '-' }}</td>
-                <td>{{ item.condition or '-' }}</td>
-                <td>{{ item.vaccines or '-' }}</td>
-                <td>{{ item.likes or '-' }}</td>
-                <td>{{ item.dislikes or '-' }}</td>
-                <td>{{ item.category_idcategory or '-' }}</td>
+                {% for item in items %}
+                    {% set img_count = 0 -%}
+                    <td>{{ item.iditem }}</td>
+                    <td>{{ item.name or '-' }}{{ item.name or '-' }}</td>
+                    <td>{{ item.image_path or '-' }}</td>
+                    <td>{{ item.image_blob or '-' }}</td>
+                    <td> 
+                        {{image_base64}}
+                    {% if image_base64 %}
+                        <img src="data:image/jpeg;base64,{{ images_base64.img_count | safe }}" alt="Item Image">
+                    {% else %}
+                        <p>No image found</p>
+                    {% endif %}</td>
+                    <td>{{ item.model_color or '-' }}</td>
+                    <td>{{ item.brand_species or '-' }}</td>
+                    <td>{{ item.year_acquired or '-' }}</td>
+                    <td>{{ item.desc or '-' }}</td>
+                    <td>{{ item.condition or '-' }}</td>
+                    <td>{{ item.vaccines or '-' }}</td>
+                    <td>{{ item.likes or '-' }}</td>
+                    <td>{{ item.dislikes or '-' }}</td>
+                    <td>{{ item.category_idcategory or '-' }}</td>
+                    {% endfor %}
             </tr>
-            {% endfor %}
         </tbody>
     </table>
 </body>

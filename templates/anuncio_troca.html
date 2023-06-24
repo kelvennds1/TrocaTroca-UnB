@@ -19,35 +19,32 @@
                 <img src="data:image/jpeg;base64,{{ image_base64 | safe }}" alt="🫥 foto" width="500" height="600">    
         </div>
 
-        <div name-anuncio>anuncio_troca.name: &nbsp  ..{{ anuncio_troca.name or '-NOME ANUNCIO-' }}</div>
-        <div desc-anuncio>anuncio_troca.desc: &nbsp  ..{{ anuncio_troca.desc or '-NOME ANUNCIO-' }}</div>
-        <div>anuncio_troca.reason: &nbsp  ..{{ anuncio_troca.reason or '-NOME ANUNCIO-' }}</div>
 
         <div class="content-container">
-            <br>Produto<br>
+            <div name-anuncio>anuncio_troca.name: &nbsp  ..{{ anuncio_troca.name or '-NOME ANUNCIO-' }}</div>
+            <div desc-anuncio>anuncio_troca.desc: &nbsp  ..{{ anuncio_troca.desc or '-NOME ANUNCIO-' }}</div>
+            <div>anuncio_troca.reason: &nbsp  ..{{ anuncio_troca.reason or '-NOME ANUNCIO-' }}</div>
+    
+            <br>Produto nome: &nbsp
             {{ item.name or '-' }}
-            <br>Modelo<br>
-            {{ item.model_color or '-' }}
-            <br>Ano adquirido:<br>
-            {{ item.year_acquired or '-' }}
-            <br>Condição<br>
-            {{ item.condition or '-' }}
-            <br>Preço de mercado<br>
-            R${{ anuncio_troca.market_price or '-' }} {# !TODO: only allow int #}
-            <br>Detalhes do produto: <br>
-            {{ item.desc or '-' }} {# !TODO: allow for desc to be image} #}
+            <br>Modelo: &nbsp {{ item.model_color or '-' }}
+            <br>Preço de mercado: &nbsp R${{ anuncio_troca.market_price or '-' }} {# !TODO: only allow int #} 
+            | Ano adquirido: &nbsp {{ item.year_acquired or '-' }} 
+            | Condição: &nbsp {{ item.condition or '-' }}
+            <br>Detalhes do produto: : &nbsp {{ item.desc or '-' }} {# !TODO: allow for desc to be image} #}
         </div>
 
         <div anunciante-container>
-            <div class="pfp-container">
-                    <img src="data:image/jpeg;base64,{{ anun_pfp | safe }}" alt="🫥 pfp anunciante" width="500" height="600">    
+            <br>Anunciante pfp:
+            <div >
+                <img class="pfp-container" src="data:image/jpeg;base64,{{ anun_pfp | safe }}" alt="🫥 pfp anunciante" width="500" height="600">    
+                Anunciante nome: 
+                {{ anunciante.name or '-' }}
             </div>
-            <br>Anunciante<br>
-            {{ anunciante.name or '-' }}
-            <br>Anunciante<br>
-            {{ anunciante.name or '-' }}
-
         </div>
+        
+        {# !TODO: add oferecer troca button #}
+        <a href="visualisar_seus_anuncios_listed" class="button register-btn" id="oferecer-troca-btn">oferecer troca</a>    
 
         <div class="waves-container">
             <svg width="100vw" height="95" viewBox="0 0 414 95" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,6 +53,5 @@
             <path fill-rule="evenodd" clip-rule="evenodd" d="M0 21.3797L17.25 19.3122C34.5 17.2447 69 13.1097 103.5 19.3122C138 25.5148 172.5 42.0548 207 39.9873C241.5 37.9198 276 17.2447 310.5 15.1772C345 13.1097 379.5 29.6498 396.75 37.9198L414 46.1899V71H396.75C379.5 71 345 71 310.5 71C276 71 241.5 71 207 71C172.5 71 138 71 103.5 71C69 71 34.5 71 17.25 71H0V21.3797Z" fill="#0BAD59" fill-opacity="0.5"/>
             </svg>
         </div>
-    </div>
-</body>
+    </div></body>
 </html>

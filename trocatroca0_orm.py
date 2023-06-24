@@ -40,6 +40,7 @@ class Item(Base):
 class Person_adv_exch_item(Base):
     __tablename__ = 'person_adv_exch_item'
     idpersonAdvExchItem = Column(Integer, primary_key=True)
+    name = Column(String(75) )
     desc = Column(String(1000) )
     delivers = Column(String(45) )
     reason = Column(String(450) )
@@ -55,6 +56,7 @@ class Person_adv_exch_item(Base):
 class Person_adv_donate_item(Base):
     __tablename__ = 'person_adv_donate_item'
     idpersonAdvDonateItem = Column(Integer, primary_key=True)
+    name = Column(String(75) )
     desc = Column(String(1000) )
     delivers = Column(String(45) )
     reason = Column(String(450) )

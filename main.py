@@ -66,6 +66,7 @@ def disp_troca():
     db = Session()
     try:
         anuncio = db.query(Person_adv_exch_item).filter_by(idpersonAdvExchItem = idanuncio ).first()
+        item = db.query(Item).filter_by(iditem = anuncio.item_iditem ).first()
         anunciante = db.query(Person).filter_by(idperson = anuncio.person_idperson ).first()
     except:
         print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
