@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/anuncio.css">
+</head>
+<body>
+    <div wrapper>
+        <header>
+            <div class="back-button">
+                <!-- <div class="back-button-child"></div> -->
+                <img class="back-button-img" alt="" src="../static/img/back-button.svg" />
+                <!-- <a href="/login" class="back-link"></a> -->
+            </div>
+            <div class="troca-troca">TrocaTroca</div>
+        </header>
+
+        <div class="image-container">
+                <img src="data:image/jpeg;base64,{{ item_foto | safe }}" alt="🫥 foto" width="500" height="600">    
+        </div>
+
+        <div class="content-container">
+            <div name-anuncio>anuncio_doa.name: &nbsp  ..{{ anuncio_doa.name or '-NOME ANUNCIO-' }}</div>
+            <div desc-anuncio>anuncio_doa.desc: &nbsp  ..{{ anuncio_doa.desc or '-NOME ANUNCIO-' }}</div>
+            <div>anuncio_doa.reason: &nbsp  ..{{ anuncio_doa.reason or '-NOME ANUNCIO-' }}</div>
+    {# !TODO: allow these to not be shown if they don't exist#}
+            {% if item.category_idcategory == idcategory_animal %} {# 'animal' category #}
+                <br>Nome: &nbsp
+                {% if item.name is not none %}
+                    {{ item.name or '-' }}
+                {% else %}
+                    🥺👉👈 ..sem nome?
+                {% endif %}
+                {% if item.vaccines is not none %}
+                    <br>Vacinas em dia: &nbsp
+                    {{ item.vaccines or '-' }}
+                {% else %}
+                    sem vacinação atualizada informada
+                {% endif %}
+                {% if item.brand_species is not none %}
+                    <br>Raça: &nbsp {{ item.brand_species or '-' }}
+                {% endif %}
+                {% if item.model_color is not none %}
+                    | Cor: &nbsp {{ item.model_color or '-' }}
+                {% endif %}
+                
+                {% if item.year_acquired is not none %}
+                    | Idade: &nbsp {{ item.year_acquired or '-' }} 
+                {% endif %}
+                {% if item.condition is not none %}
+                {# !TODO: front asks for reproduction status #}
+                    <br>Condições de saúde: &nbsp {{ item.condition or '-' }}
+                {% endif %}
+                {%if item.desc is not none%}
+                    <br>Detalhes do animal: : &nbsp {{ item.desc or '-' }}  
+                {% endif %} {# !TODO: allow for desc to be image} #}
+            {% else %}  
+                {% if item.name is not none %}
+                    <br>Nome produto: &nbsp {{ item.name or '-' }}
+                {% endif %}
+                {% if item.model_color is not none %}
+                    <br>Modelo: &nbsp {{ item.model_color or '-' }}
+                {% endif %}
+                {% if item.market_price is not none %} 
+                    <br> Preço de mercado: &nbsp R${{ anuncio_doa.market_price or '-' }} {# !TODO: only allow int #} 
+                {% endif %}
+                {% if item.year_acquired is not none %} {# !TODO: css handles small divs to b side by side and clearly separated if exists, byt then delete '|'' #}
+                    | Ano adquirido: &nbsp {{ item.year_acquired or '-' }} 
+                {% endif %}
+                {% if item.condition is not none %}
+                    | Condição: &nbsp {{ item.condition or '-' }}
+                {% endif %}
+                {% if item.desc is not none %}
+                    <br>Detalhes do produto: : &nbsp {{ item.desc or '-' }} {# !TODO: allow desc to be image} #}
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div anunciante-container>
+            <br>Anunciante pfp:
+            <div >
+                {# ! ensure that back sends anun_pfp std value if person.pfp_blob is none #}
+                <img class="pfp-container" src="data:image/jpeg;base64,{{ anun_pfp | safe }}" alt="🫥 pfp anunciante" width="500" height="600">    
+                Anunciante nome: 
+                {{ anunciante.name or '-' }}                
+            </div>
+        </div>
+        
+        {# !TODO: add oferecer troca button #}
+        <a href="visualisar_seus_anuncios_listed" class="button register-btn" id="oferecer-troca-btn">oferecer troca</a>    
+
+        <div class="waves-container">
+            <svg width="100vw" height="95" viewBox="0 0 414 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 45H17C35 45 69 45 104 50C138 54 173 62 207 60C242 58 276 45 311 39C345 33 380 33 397 33H414V95H397C380 95 345 95 311 95C276 95 242 95 207 95C173 95 138 95 104 95C69 95 35 95 17 95H0V45Z" fill="#0BAD59"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.585L17 16.585C35 20.585 69 29.585 104 35.585C138 41.585 173 45.585 207 37.585C242 29.585 276 8.585 311 2.585C345 -4.415 380 4.585 397 8.585L414 12.585V74.585H397C380 74.585 345 74.585 311 74.585C276 74.585 242 74.585 207 74.585C173 74.585 138 74.585 104 74.585C69 74.585 35 74.585 17 74.585H0V12.585Z" fill="#0BAD59" fill-opacity="0.75"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 21.3797L17.25 19.3122C34.5 17.2447 69 13.1097 103.5 19.3122C138 25.5148 172.5 42.0548 207 39.9873C241.5 37.9198 276 17.2447 310.5 15.1772C345 13.1097 379.5 29.6498 396.75 37.9198L414 46.1899V71H396.75C379.5 71 345 71 310.5 71C276 71 241.5 71 207 71C172.5 71 138 71 103.5 71C69 71 34.5 71 17.25 71H0V21.3797Z" fill="#0BAD59" fill-opacity="0.5"/>
+            </svg>
+        </div>
+    </div></body>
+</html>

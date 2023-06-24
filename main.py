@@ -86,6 +86,39 @@ def disp_troca():
     return render_template('anuncio_troca.html', anuncio_troca=anuncio, item=item, image_base64=item_foto, anunciante=anunciante, anun_pfp=anun_pfp)
 
 
+
+# pagina de anuncio de troca 
+@app.route('/anuncio_doacao')
+def disp_doacao(): #!TODO: use same func for both anuncio routes
+    IDCATEGORY_ANIMAL = 7 # ensure auto increment wont try to use this, in case of changes
+    idanuncio = 2 # !TODO: receive this as parameter
+    db = Session()
+    try:
+        anuncio = db.query(Person_adv_donate_item).filter_by(idpersonAdvDonateItem = idanuncio ).first()
+        item = db.query(Item).filter_by(iditem = anuncio.item_iditem ).first()
+        anunciante = db.query(Person).filter_by(idperson = anuncio.person_idperson ).first()
+    except Exception as e:
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print('ERRO em db.query() fetch anuncio, item e anunciante ')
+        print(e)
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    db.close()
+    try:
+        item_foto = item.image_blob.decode('utf-8')
+        if anunciante.pfp_blob is not None:
+            anun_pfp = anunciante.pfp_blob.decode('utf-8')
+        else:
+            anun_pfp = 'placeholdr🫥pic' # !TODO : create placeholder pic base64
+            
+    except Exception as e:
+        item_foto ='"img 🫥"'
+        anun_pfp = 'pfp 🫥' 
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        print('ERRO em conversao de imagens item.image_blob e person.pfp_blob ')
+        print(e)
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    return render_template('anuncio_doacao.html', anuncio_doa=anuncio, item=item, item_foto=item_foto, anunciante=anunciante, anun_pfp=anun_pfp, idcategory_animal=IDCATEGORY_ANIMAL )
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
 
