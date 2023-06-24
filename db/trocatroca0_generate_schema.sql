@@ -210,3 +210,19 @@ AUTO_INCREMENT = 3;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+CREATE TABLE IF NOT EXISTS swap (
+    idswap INT NOT NULL AUTO_INCREMENT,
+    p1kGive VARCHAR(1000) NOT NULL,
+    p1kReceive VARCHAR(1000) NOT NULL,
+    p2kGive VARCHAR(1000),
+    p2kReceive VARCHAR(1000),
+    time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (idswap)
+) ENGINE = InnoDB
+AUTO_INCREMENT = 3;
+
+alter table person_adv_donate_item rename column item_category_idcategory to
+category_idcategory;
