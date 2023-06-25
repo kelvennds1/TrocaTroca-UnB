@@ -8,8 +8,8 @@ import requests
 import pytz
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
-engine = create_engine(
+app.secret_key = 'app_secret_key'
+engine = create_engine('
 Session = sessionmaker(bind=engine)
 from sqlalchemy import func
 
@@ -52,7 +52,7 @@ def swap():
 # Route for checking the swap status
 @app.route('/swap_status')
 def swap_status():
-    # session = Session()
+    # !TODO: how to pass session as arg? remem to close
     swap_data = session.get('swap_data')
 
     if swap_data:
@@ -69,12 +69,23 @@ def swap_status():
     return redirect('/swap')
 
 
-# Helper function to save swap details in the database
+# !TODO: update swap_status to redirect user immediately after 2nd party inserts swap (success), or to display swap page link (fail)
 def save_swap_data(idperson, iditem_receive, iditem_give):
     session = Session()
-    new_swap = Swap(p1Key=idperson, p1kGive=iditem_receive, p1kReceive=iditem_give)
-    session.add(new_swap)
-    session.commit()
+    
+    try:
+        swap_table = session.query(Swap).filter_by(p1kGive=iditem_receive, p1kReceive=iditem_give)
+        swap_table.update({
+            Swap.p2kGive: iditem_give,
+            Swap.p2Key: idperson,
+            Swap.p2kReceive: iditem_receive
+        })
+        session.commit()
+    except: # ill advised code should use try except & if null
+        new_swap = Swap(p1Key=idperson, p1kGive=iditem_give, p1kReceive=iditem_receive)
+        session.add(new_swap)
+        session.commit()
+
     session.close()
 
 
