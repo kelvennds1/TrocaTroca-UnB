@@ -18,18 +18,20 @@
         <div class="register-text">Trocar chaves</div>
         <form method="POST" action="/swap">
             <label for="iditem_receive">seu ID:</label>
-            <input type="text" id="idperson" name="idperson">  
-            <label for="iditem_receive">ID do item desejado:</label>
-            <input type="text" id="iditem_receive" name="iditem_receive">          
+            <input type="text" id="idperson_logged" name="idperson_logged">         
             <label for="iditem_give">ID do item que você dará:</label>
             <input type="text" id="iditem_give" name="iditem_give">
+            <label for="iditem_receive">ID de user da outra parte da troca:</label>
+            <input type="text" id="idperson_other_party" name="idperson_other_party">  
+            <label for="iditem_receive">ID do item desejado:</label>
+            <input type="text" id="iditem_receive" name="iditem_receive">   
             <button type="submit">Submit</button>
         </form>
 
 
         
         {# !TODO: add oferecer troca button #}
-        <a href="visualisar_seus_anuncios_listed" class="button register-btn" id="oferecer-troca-btn">oferecer troca</a>    
+    {# <!-- <a href="visualisar_seus_anuncios_listed" class="button register-btn" id="oferecer-troca-btn">oferecer troca</a>     --> #}
 
         <div class="waves-container">
             <svg width="100vw" height="95" viewBox="0 0 414 95" fill="none" xmlns="http://www.w3.org/2000/svg">

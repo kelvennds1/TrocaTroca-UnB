@@ -31,21 +31,11 @@ def swap():
         iditem_give = request.form['iditem_give']
         idperson_other_party = request.form['idperson_other_party']
         iditem_receive = request.form['iditem_receive']
-        # Save the swap details in the database
-        save_swap_data(idperson_logged, iditem_give, idperson_other_party, iditem_receive)
-
-        # Set the expiration time for the swap
+        
+        answ_template = save_swap_data(idperson_logged, iditem_give, idperson_other_party, iditem_receive) #  'swap_waiting_2nd_party.html' 'swap_success.html' or 'swap_too_long_try_again.html'
         expiration_time = datetime.now(pytz.utc) + timedelta(minutes=5)
 
-        # Store the swap details and expiration time in session
-        session['swap_data'] = {
-            'iditem_receive': iditem_receive,
-            'iditem_give': iditem_give,
-            'idperson_logged': idperson_logged,
-            'idperson_other_party': idperson_other_party,
-            'expiration_time': expiration_time
-        }
-
+        return render_template(str(answ_template))
         return redirect('/swap_status')
 
     return render_template('swap.html')
@@ -79,7 +69,7 @@ def save_swap_data(idperson_logged, iditem_give, idperson_other_party, iditem_re
 
     try: #!TODO: prevent multiple table creation entries from 1st party
         swap_table = session.query(Swap).filter_by(p1Key=idperson_other_party, p1kGive=iditem_receive, p1kReceive=iditem_give, p2Key=idperson_logged).first()
-        max_time = swap_table.time_created + timedelta(minutes=10)
+        max_time = swap_table.time_created + timedelta(minutes=5)
         max_time = max_time.replace(second=0, microsecond=0) # note: excluding max_time time formatting code may result in table not updating at 2nd party's input
         max_time = max_time.astimezone(pytz.timezone('America/Sao_Paulo'))
 
@@ -88,14 +78,17 @@ def save_swap_data(idperson_logged, iditem_give, idperson_other_party, iditem_re
             swap_table.p2kReceive = iditem_receive
             session.commit()
             print('Troca efetivada! O item é seu =)')
+            return 'swap_success.html'
         else:
             print('demorou demais tenta dnv =DD')
-            return render_template('swap_status.html', status='expired')
+            # return render_template('swap_status.html', status='expired')
+            return 'swap_too_long_try_again.html'
     except: # ill advised code should use try except & if null
         if swap_table == None:
             new_swap = Swap(p1Key=idperson_logged, p1kGive=iditem_give, p1kReceive=iditem_receive, p2Key=idperson_other_party, time_created=current_time)
             session.add(new_swap)
             session.commit()
+            return 'swap_waiting_2nd_party.html'
 
     session.close()
 
