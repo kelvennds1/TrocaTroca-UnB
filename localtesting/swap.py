@@ -9,7 +9,7 @@ import pytz
 
 app = Flask(__name__)
 app.secret_key = 'app_secret_key'
-engine = create_engine('
+engine = create_engine('mysql+pymysql://root:p@localhost/trocatroca0')
 Session = sessionmaker(bind=engine)
 from sqlalchemy import func
 
@@ -23,24 +23,26 @@ import string
 # Route for the swap page
 @app.route('/swap', methods=['GET', 'POST'])
 def swap():
-    #if 'idperson' not in session:
+    #if 'idperson_logged' not in session:
     #    return redirect('/login')
 
     if request.method == 'POST':
-        idperson = request.form['idperson']
-        iditem_receive = request.form['iditem_receive']
+        idperson_logged = request.form['idperson_logged']
         iditem_give = request.form['iditem_give']
+        idperson_other_party = request.form['idperson_other_party']
+        iditem_receive = request.form['iditem_receive']
         # Save the swap details in the database
-        save_swap_data(idperson, iditem_receive, iditem_give)
+        save_swap_data(idperson_logged, iditem_give, idperson_other_party, iditem_receive)
 
         # Set the expiration time for the swap
-        expiration_time = datetime.now() + timedelta(minutes=5)
+        expiration_time = datetime.now(pytz.utc) + timedelta(minutes=5)
 
         # Store the swap details and expiration time in session
         session['swap_data'] = {
             'iditem_receive': iditem_receive,
             'iditem_give': iditem_give,
-            'idperson': idperson,
+            'idperson_logged': idperson_logged,
+            'idperson_other_party': idperson_other_party,
             'expiration_time': expiration_time
         }
 
@@ -57,7 +59,7 @@ def swap_status():
 
     if swap_data:
         current_time = datetime.now(pytz.utc)  # Get current time with UTC timezone
-
+        # current_time = datetime.now() + timedelta(minutes=0)
         if current_time <= swap_data['expiration_time']:
             # Swap attempt is within the valid time range
             return render_template('swap_status.html', status='success')
@@ -70,21 +72,30 @@ def swap_status():
 
 
 # !TODO: update swap_status to redirect user immediately after 2nd party inserts swap (success), or to display swap page link (fail)
-def save_swap_data(idperson, iditem_receive, iditem_give):
+def save_swap_data(idperson_logged, iditem_give, idperson_other_party, iditem_receive):
     session = Session()
-    
-    try:
-        swap_table = session.query(Swap).filter_by(p1kGive=iditem_receive, p1kReceive=iditem_give)
-        swap_table.update({
-            Swap.p2kGive: iditem_give,
-            Swap.p2Key: idperson,
-            Swap.p2kReceive: iditem_receive
-        })
-        session.commit()
+    current_time = datetime.now(pytz.timezone('America/Sao_Paulo'))  # Get current time with UTC timezone
+    swap_table = None
+
+    try: #!TODO: prevent multiple table creation entries from 1st party
+        swap_table = session.query(Swap).filter_by(p1Key=idperson_other_party, p1kGive=iditem_receive, p1kReceive=iditem_give, p2Key=idperson_logged).first()
+        max_time = swap_table.time_created + timedelta(minutes=10)
+        max_time = max_time.replace(second=0, microsecond=0) # note: excluding max_time time formatting code may result in table not updating at 2nd party's input
+        max_time = max_time.astimezone(pytz.timezone('America/Sao_Paulo'))
+
+        if (current_time <= max_time):
+            swap_table.p2kGive = iditem_give
+            swap_table.p2kReceive = iditem_receive
+            session.commit()
+            print('Troca efetivada! O item é seu =)')
+        else:
+            print('demorou demais tenta dnv =DD')
+            return render_template('swap_status.html', status='expired')
     except: # ill advised code should use try except & if null
-        new_swap = Swap(p1Key=idperson, p1kGive=iditem_give, p1kReceive=iditem_receive)
-        session.add(new_swap)
-        session.commit()
+        if swap_table == None:
+            new_swap = Swap(p1Key=idperson_logged, p1kGive=iditem_give, p1kReceive=iditem_receive, p2Key=idperson_other_party, time_created=current_time)
+            session.add(new_swap)
+            session.commit()
 
     session.close()
 
