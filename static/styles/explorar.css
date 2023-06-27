@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
+body {
+    overflow-y: scroll;
+    margin-top: 30px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F5F5;
+}
+.body::-webkit-scrollbar {
+    display: none; /* Oculta a barra de rolagem no Chrome, Safari e Opera */
+}
+  
+.body {
+    scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+}
+  
+.home {
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+header{
+    width: 100%;
+    padding: 20px;
+}
+.top {
+    font-family: 'Fira Sans', sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.back-button{
+    margin-right: 20px;
+}
+.top-left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.page-name{
+    font-weight: 800;
+    font-size: 32px;
+    color: #3C3C3C;
+}
+.search-bar{
+    margin-top: 30px;
+    border: 0;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    width: 100%;
+    background-color: #dedede;
+    border-radius: 22px;
+    padding: 12px;
+}
+.content{
+    font-family: 'Fira Sans', sans-serif;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+.item{
+    width: 100%;
+    height: 431px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+.item-header{
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.item-header img{
+    margin-right: 10px;
+    width: 38px;
+}
+.item-owner{
+    font-size: 15px;
+    color: 0000;
+    font-weight: bold;
+}
+.instagram{
+    font-size: 13px;
+    color: #747474;
+}
+.imagem-wrapper{
+    width: 100%;
+    height: 298px;
+    overflow: hidden;
+    position: relative; /* Para fazer que a imagem com position-absolute respeite a sua posição consoante este selector, ou evitar que saia do mesmo */
+}
+.imagem {
+    width: 110%;
+    /* código abaixo centra a imagem ao centro */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.item-desc{
+    padding: 0 20px 0 20px;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Fira Sans', sans-serif;
+}
+.name-year{
+    flex-direction: column;
+}
+.item-name{
+    font-size: 24px;
+    font-weight: 600;
+    color: #3C3C3C;
+}
+.item-year{
+    font-size: 14px;
+    font-weight: 400;
+    color: #747474;
+}
+.item-type{
+    font-size: 24px;
+    font-weight: 800;
+    color: #0BAD59;  
+}
+.last-div{
+    bottom: 0;
+    justify-self: flex-end;
+    font-size: 24px;
+    min-height: 1000px;
+}
+.navigation{
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    bottom: 20px;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    max-width: 900px;
+    padding: 10px;
+    border-radius: 22px;
+    background-color: #0BAD59;
+}
+.meio-nav{
+    padding: 0;
+    display: flex;
+    border-radius: 22px;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    height: 130%;
+    background-color: #F5F5F5;
+}
+.vectors{
+    width: 24px;
+}
+.explorar{
+    width: 20px;
+}

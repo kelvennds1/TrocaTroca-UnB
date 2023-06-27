@@ -40,7 +40,15 @@ def logout():
     session.pop('username', None)
     # Redirecione para a página de login
     return redirect('/login')
-    
+
+@app.route('/explorar', methods=['GET', 'POST'])
+def explorar():
+    sessio = Session()
+    items = sessio.query(Item).all()
+    return render_template('explorar.html', items=items)
+    # Rota principal
+
+
 @app.route('/inserir')
 def inserir():
     return render_template('inserir_anuncio.html')
