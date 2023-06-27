@@ -24,6 +24,25 @@
         timeRemaining--;
       }, 1000);
     });
+
+
+  <!-- !TODO: not redirecting, redirect at full table population -->
+    function checkSwapStatus() {
+      fetch('/swap_status')
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            window.location.href = '/swap_success';
+          } else if (data.status === 'expired') {
+            window.location.href = '/swap_time_expired_try_again';
+          } else {
+            pass
+          }
+        });
+    }
+
+    setInterval(checkSwapStatus, 1000000);
+  
   </script>
 </head>
 <body>
