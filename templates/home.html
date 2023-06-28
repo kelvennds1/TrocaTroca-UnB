@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="../static/styles/home.css" />
-  </head>
-  <body>
-    <div class="home">
-      <header>
-        <div class="top">
-          <img class="user-pic-icon" alt="" src="../static/img/User pic.svg" />
-          <div class="message">
-            <p class="ola-user">Olá, {{ session['username'] }}!</p>
-            <p class="wellcome">Bem-vindo de volta!</p>
-          </div>
-          <img class="hamburger-icon" alt="" src="../static/img/Hamburger.svg" id="hamburgerIcon"/>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="stylesheet" href="../static/styles/home.css" />
+  <link rel="stylesheet" href="../static/styles/sidebar.css" />
+</head>
+<body>
+  <div class="home">
+    <header>
+      <div class="top">
+        <img class="user-pic-icon" alt="" src="../static/img/User pic.svg" />
+        <div class="message">
+          <p class="ola-user">Olá, {{ session['username'] }}!</p>
+          <p class="wellcome">Bem-vindo de volta!</p>
         </div>
-        <div class="search-input">
-          <input class="search-bar" type="text" id="search-bar" placeholder="Pesquise por livros, violão e muito mais..."/>
-          <!-- <img src="../static/img/search.svg" class='searcha' alt=""> -->
-        </div>
+        <img class="hamburger-icon" alt="" src="../static/img/Hamburger.svg" id="hamburgerIcon"/>
+      </div>
+      <div class="search-input">
+        <input class="search-bar" type="text" id="search-bar" placeholder="Pesquise por livros, violão e muito mais..."/>
+        <!-- <img src="../static/img/search.svg" class='searcha' alt=""> -->
+      </div>
     </header>
     <div class="main-page-content">
       <div class="new-arrivals">
@@ -81,8 +82,16 @@
           <a href="#"><img class="vectors" src="../static/img/nav-bar/estudo.svg" alt=""></a>
         </nav>
       </div>
+      <div class="sidebar">
+        <a href="anuncios.html">Anúncios</a>
+        <a href="minha_conta.html">Minha Conta</a>
+        <a href="efetuar_troca.html">Efetuar Troca</a>
+        <a href="#">Logout</a>
+        <a href="#">Feedback</a>
+      </div>
     </div>
-    <script src="../static/js/home.js"></script>  
+    <script src="../static/js/home.js"></script>
+    <script src="../static/js/sidebar.js"></script>
+  </div>
   </body>
 </html>
-
