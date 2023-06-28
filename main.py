@@ -5,10 +5,10 @@ from sqlalchemy.orm import sessionmaker
 from routes.register_route import registro_bp # Importe o blueprint de registro
 from routes.login_route import login_bp
 from routes.home_route import home_bp
+from routes.swap_route import swap_bp
 from trocatroca0_orm import *
-import base64
 #------------------------------------------------ Criar App -------------------------------------------------------------
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 #-------------------------------------------- Importando Rotas ------------------------------------------------------------
 @app.before_request
@@ -25,6 +25,7 @@ def index():
 app.register_blueprint(registro_bp)  # Registrar o blueprint de registro na aplicação Flask
 app.register_blueprint(login_bp)
 app.register_blueprint(home_bp)
+app.register_blueprint(swap_bp)
 
 
 app.secret_key = '342342354525351sadad1eqd'  # Chave secreta para gerar sessões seguras
@@ -87,7 +88,7 @@ def disp_troca():
 
 
 
-# pagina de anuncio de troca 
+# pagina de anuncio de doacao 
 @app.route('/anuncio_doacao')
 def disp_doacao(): #!TODO: use same func for both anuncio routes
     IDCATEGORY_ANIMAL = 7 # ensure auto increment wont try to use this, in case of changes
