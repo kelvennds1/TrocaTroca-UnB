@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS swap (
     p1kReceive VARCHAR(1000) NOT NULL,
     p2kGive VARCHAR(1000),
     p2kReceive VARCHAR(1000),
-    time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    time_created DATETIME DEFAULT CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo'),
     PRIMARY KEY (idswap)
 ) ENGINE = InnoDB
 AUTO_INCREMENT = 3;
@@ -229,10 +229,9 @@ category_idcategory;
 
 
 ALTER TABLE `trocatroca0`.`item`
-ADD COLUMN `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-
+ADD COLUMN `time_created` DATETIME DEFAULT CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo');
 ALTER TABLE `trocatroca0`.`person_adv_donate_item`
-ADD COLUMN `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-
+ADD COLUMN `time_created` DATETIME DEFAULT CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo');
 ALTER TABLE `trocatroca0`.`person_adv_exch_item`
-ADD COLUMN `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ADD COLUMN `time_created` DATETIME DEFAULT CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo');
+ALTER TABLE `trocatroca0`.`item`

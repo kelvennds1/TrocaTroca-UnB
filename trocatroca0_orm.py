@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, LargeBinary, TIMESTAMP
+from sqlalchemy import Column, ForeignKey, Integer, String, LargeBinary, DATETIME
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -33,7 +33,7 @@ class Item(Base):
     vaccines = Column(String(1000) )
     likes = Column(String(1000) )
     dislikes = Column(String(1000) )
-    time_created = Column(TIMESTAMP, server_default='CURRENT_TIMESTAMP')
+    time_created = Column(DATETIME, server_default="CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo')")
     category_idcategory = Column(Integer, ForeignKey('category.idcategory'))
     person_idperson = Column(Integer, ForeignKey('person.idperson'))
     category = relationship('Category', foreign_keys=[category_idcategory], lazy='joined')
@@ -48,7 +48,7 @@ class Person_adv_exch_item(Base):
     reason = Column(String(450) )
     listed = Column(String(15) )
     market_price = Column(String(45) )
-    time_created = Column(TIMESTAMP, server_default='CURRENT_TIMESTAMP')
+    time_created = Column(DATETIME, server_default="CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo')")
     person_idperson = Column(Integer, ForeignKey('person.idperson'), primary_key=True)
     item_iditem = Column(Integer, ForeignKey('item.iditem'), primary_key=True)
     category_idcategory = Column(Integer, ForeignKey('category.idcategory'), primary_key=True)
@@ -64,7 +64,7 @@ class Person_adv_donate_item(Base):
     delivers = Column(String(45) )
     reason = Column(String(450) )
     listed = Column(String(15) )
-    time_created = Column(TIMESTAMP, server_default='CURRENT_TIMESTAMP')
+    time_created = Column(DATETIME, server_default="CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo')")
     person_idperson = Column(Integer, ForeignKey('person.idperson'), primary_key=True)
     item_iditem = Column(Integer, ForeignKey('item.iditem'), primary_key=True)
     category_idcategory = Column(Integer, ForeignKey('category.idcategory'), primary_key=True)
@@ -82,7 +82,7 @@ class Swap(Base):
     p2kGive = Column(Integer, ForeignKey('item.iditem'))
     p2kReceive = Column(Integer, ForeignKey('item.iditem'))
     p2Key = Column(Integer, ForeignKey('person.idperson'))
-    time_created = Column(TIMESTAMP, server_default='CURRENT_TIMESTAMP')
+    time_created = Column(DATETIME, server_default="CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo')")
     person1 = relationship('Person', foreign_keys=[p1Key])
     p1_k_give = relationship('Item', foreign_keys=[p1kGive])
     p1_k_receive = relationship('Item', foreign_keys=[p1kReceive])
