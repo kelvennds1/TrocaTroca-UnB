@@ -12,23 +12,35 @@
                 <img class="back-button-img" alt="" src="../static/img/back-button.svg" />
                 <!-- <a href="/login" class="back-link"></a> -->
             </div>
-            <div class="troca-troca">TrocaTroca</div>
+
+            <div class="tag-superior">
+              <div class="troca-troca">TrocaTroca</div>
+              <img class="image-logo" src="/TrocaTroca-UnB/static/img/logo-trocatroca.png" alt="logo">
+            </div>
         </header>
 
-        <div class="register-text">Trocar chaves</div>
-        <form method="POST" action="/swap">
-            <label for="iditem_receive">seu ID:</label>
-            <input type="text" id="idperson_this_party" name="idperson_this_party">         
-            <label for="iditem_give">ID do item que você dará:</label>
-            <input type="text" id="iditem_give" name="iditem_give">
-            <label for="iditem_receive">ID de user da outra parte da troca:</label>
-            <input type="text" id="idperson_other_party" name="idperson_other_party">  
-            <label for="iditem_receive">ID do item desejado:</label>
-            <input type="text" id="iditem_receive" name="iditem_receive">   
-            <button type="submit">Submit</button>
-        </form>
-      
-      {# !TODO: this is clashing w route logic in swap.py , needs clarity #}
+        <div class="box-bordy">
+          <div class="register-text">Trocar chaves</div>
+          <form method="POST" action="/swap">
+            
+            <div class="input-container">
+              <label for="iditem_receive">seu ID:</label>
+              <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
+              <label for="iditem_give">ID do item que você dará:</label>
+              <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+              <label for="iditem_receive">ID de user da outra parte da troca:</label>
+              <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">  
+              <label for="iditem_receive">ID do item desejado:</label>
+              <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
+              <button type="submit" class="button-submit">Submit</button>
+            </div>
+          </form>
+        </div>
+       
+      <br>
+      <br>
+      <br>
+          <!-- {# !TODO: this is clashing w route logic in swap.py , needs clarity #} -->
         <script>
           function checkSwapStatus() {
             fetch('/swap_status')

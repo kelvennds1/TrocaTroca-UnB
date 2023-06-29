@@ -41,6 +41,18 @@ header{
   align-items:center;
   justify-content: space-between;
 }
+
+.tag-superior {
+  width: 60%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  margin: 1em 0em 0em 0em;
+}
+.image-logo{
+  width: 2.5em;
+  height: 2.5em;
+}
 .troca-troca{
   font-style: normal;
   font-weight: 800;
@@ -48,19 +60,56 @@ header{
   font-family: 'Dosis';
   font-feature-settings: 'kern' off;
   color: #3C3C3C;
+  margin: 0.6em 0.2em 0em 0em;
+}
+
+.box-bordy{
+  display: flex;
+  flex-direction: column;
+ 
+ 
 }
 .register-text{ 
   margin-top: 15.054vw;
-  margin-bottom: 5vw;
+  margin-bottom: 1vw;
   font-family: 'Dosis';
   font-style: normal;
   font-weight: 800;
   font-size: 48px;
-  color: #3C3C3C;   
+  color: #3C3C3C; 
+  margin: 1.2em 1em 0.5em 1.4em; 
+  justify-content: center;
+  align-items: center;
 }
+
 .input-container {
+  font-size: 20px;
+  font-family: 'Dosis';
+  font-weight: 600;
+  margin: 1em;
   display: flex;
-  margin-bottom: 15px;
+  flex-direction: column;
+  margin-bottom: 1em;
+
+.input-caracter {
+    border-radius: 0.5em;
+    margin: 0.1em 0 0.1em 0;
+    height: 5%;
+    font-size: 20px;
+  }
+  
+
+.button-submit {
+  font-family: 'Dosis';
+  font-weight: 600;
+  font-size: 24px;
+  margin: 2em 3em 0 3em;
+  border-radius: 0.5em;
+  color: #ffffff;
+  background-color: #08b059;
+}
+
+
 }
 .login-input {
   flex: 1;
@@ -68,7 +117,7 @@ header{
   width: 70vw;
   border: 0;
   background-color: #e9e9e9;
-  border-radius: 10px;
+  border-radius: 16px;
   outline: none;
   font-size: 20px;
   font-family: 'Dosis';
@@ -123,8 +172,9 @@ header{
 /* registrar css ends */
 
 .green-bar {
-    width: 100%;
+    width: 80%;
     height: 20px;
+    margin: 0 1em 0 1em;
     background-color: green;
     position: relative;
     overflow: hidden;
@@ -132,6 +182,7 @@ header{
 
   .green-bar-fill {
     width: 100%;
+    margin: 0 1em 0 1em;
     height: 100%;
     background-color: limegreen;
     position: absolute;
@@ -148,3 +199,23 @@ header{
       width: 0%;
     }
   }
+
+  /* Pagina swag_fail */
+
+  .texto_centro{
+      margin: 5em 1.4em 5em 1.4em;
+      font-size: 20px;
+      font-weight: 500;
+      text-align: justify;
+  }
+
+  .texto_status {
+    margin: 5em 1em 1em 1em;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: justify;
+  }
+
+#countdown{
+  margin: 0.2em 1em 0 1em;
+}
