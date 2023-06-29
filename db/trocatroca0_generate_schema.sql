@@ -226,3 +226,13 @@ AUTO_INCREMENT = 3;
 
 alter table person_adv_donate_item rename column item_category_idcategory to
 category_idcategory;
+
+
+ALTER TABLE `trocatroca0`.`item`
+ADD COLUMN `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `trocatroca0`.`person_adv_donate_item`
+ADD COLUMN `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `trocatroca0`.`person_adv_exch_item`
+ADD COLUMN `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
