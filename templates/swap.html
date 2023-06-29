@@ -36,35 +36,15 @@
               .then(data => {
                 if (data.status === 'success') {
                   window.location.href = '/swap_success';
-                } else if (data.status === 'expired') {
-                  window.location.href = '/swap_time_expired_try_again';
-                } else {
+                } else if (data.status === 'pending') {
                   pass
+                } else {
+                window.location.href = '/swap_fail';
                 }
               });
           }
-      
           setInterval(checkSwapStatus, 1000);
         </script>
-        
-          <script>
-            function checkSwapStatus() {
-              fetch('/swap_status')
-                .then(response => response.json())
-                .then(data => {
-                  if (data.status === 'success') {
-                    window.location.href = '/swap_success';
-                  } else if (data.status === 'expired') {
-                    window.location.href = '/swap_time_expired_try_again';
-                  } else {
-                    pass
-                  }
-                });
-            }
-        
-            setInterval(checkSwapStatus, 1000);
-          </script>
-        
     
         <div class="waves-container">
             <svg width="100vw" height="95" viewBox="0 0 414 95" fill="none" xmlns="http://www.w3.org/2000/svg">

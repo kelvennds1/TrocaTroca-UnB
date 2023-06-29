@@ -6,10 +6,11 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script>
+    var expiration_time = 300; // used as seconds
     $(document).ready(function() {
       var interval = setInterval(checkSwapStatus, 1000);
       var startTime = Date.now();
-      var timeRemaining = 300; // 5 minutes in seconds
+      var timeRemaining = expiration_time; 
 
       var interval = setInterval(function() {
         var minutes = Math.floor(timeRemaining / 60);
@@ -20,7 +21,7 @@
 
         if (timeRemaining <= 0) {
           clearInterval(interval);
-          $("#countdown").text("Tempo expirado! No máximo 5 min entre as demandas de troca por cada participante :)) ");
+          $("#countdown").text("Tempo expirado! Tente novamente, máximo de 5 min entre as demandas de troca por cada participante :)) ");
           $("#animation").hide();
           $("#message").text("Troca não efetivada, por favor tente novamente <3");
         }
@@ -31,16 +32,16 @@
       function checkSwapStatus() {
         var elapsedTime = Math.floor((Date.now() - startTime) / 1000);
         
-        if (elapsedTime >= 300) {
+        if (elapsedTime >= expiration_time) {
           clearInterval(interval);
-          window.location.href = '/swap_success';
+          window.location.href = '/swap_fail';
           return;
         }
 
         $.ajax({
           url: '/swap_status/check',
           type: 'GET',
-          data: { idswap: '{{ idswap }}' }, // Pass the idswap parameter
+          data: { idswap: '{{ idswap }}' }, 
           success: function(data) {
             if (data.status === 'success') {
               clearInterval(interval);
