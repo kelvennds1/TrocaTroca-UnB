@@ -33,6 +33,7 @@ class Item(Base):
     vaccines = Column(String(1000) )
     likes = Column(String(1000) )
     dislikes = Column(String(1000) )
+    anuncio_type = Column(String(10) )
     time_created = Column(DATETIME, server_default="CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo')")
     category_idcategory = Column(Integer, ForeignKey('category.idcategory'))
     person_idperson = Column(Integer, ForeignKey('person.idperson'))
