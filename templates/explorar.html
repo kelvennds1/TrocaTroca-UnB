@@ -23,7 +23,12 @@
           <input class="search-bar" type="text" id="search-bar" placeholder="Pesquise por livros, violão e muito mais..."/>
           <!-- <img src="../static/img/search.svg" class='searcha' alt=""> -->
         </div>
+        <div class="filter-bar">
+            <button type="button" class="filter-troca" id="filter-troca">Troca</button>
+            <button type="button" id="filter-doacao">Doação</button>
+        </div>
       </header>
+
       <div class="content">
           <div class="carousel">
             <!-- Itens do carrossel -->
@@ -36,15 +41,25 @@
                   <div class="instagram">@elma.maria</div>
                 </div>
               </div>
-              <div class="imagem-wrapper">
-                <img src="../static/img/Splash screen.png" class="imagem" alt="">
-              </div>
+              {% if item.image_blob != none %}
+            <div class="imagem-wrapper ">
+              <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
+            </div>
+            {% else %}
+            <div class="imagem-wrapper ">
+              <img src="../static/img/Splash screen.png" class="imagem" alt="">
+            </div>
+            {% endif %}
               <div class="item-desc">
                 <div class="name-year">
                   <div class="item-name">{{ item.name }}</div>
                   <div class="item-year">Fabricante: {{ item.brand_species }} | Ano: {{ item.year_acquired }}</div>
                 </div>
+                {% if item.item_type == "Troca" %}
                 <span class="item-type">Troca</span>
+                {% else %}
+                <span class="item-type">Doação</span>
+                {% endif %}
               </div>
             </div>
             {% endfor %}
@@ -55,7 +70,7 @@
     
     <div class="navigation">
       <nav class="navbar">
-        <a href="#"><img class="vectors" src="../static/img/nav-bar/home.svg" alt=""></a>
+        <a href="/home"><img class="vectors" src="../static/img/nav-bar/home.svg" alt=""></a>
         <a href="#"><img class="explorar" src="../static/img/nav-bar/explorar.svg" alt=""></a>
         <div class="meio-nav"><a href="#"><img class="vectors" src="../static/img/nav-bar/inserir.svg" alt=""></a></div>
         <a href="#"><img class="vectors" src="../static/img/nav-bar/curtidos.svg" alt=""></a>
@@ -63,7 +78,6 @@
       </nav>
     </div>
 
-    <script src="../static/js/home.js"></script>  
+    <script src="../static/js/explorar.js"></script>  
   </body>
 </html>
-

@@ -24,18 +24,25 @@
     </header>
     <div class="main-page-content">
       <div class="new-arrivals">
-        <span class="novos-items">Novos Items de Troca</span>
-        <a class="veja-mais" href="#">Veja mais!</a>
+        <span class="novos-items">Novos Itens de Troca</span>
+        <a class="veja-mais" href="{{ url_for('explorar', tipo='Troca') }}">Veja mais!</a>
       </div>
 
       <div class="carousel-container">
         <div class="carousel">
           <!-- Itens do carrossel -->
           {% for item in items %}
+          {% if item.item_type == 'Troca' %}
           <div class="item">
+            {% if item.image_blob != none %}
+            <div class="imagem-wrapper ">
+              <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
+            </div>
+            {% else %}
             <div class="imagem-wrapper ">
               <img src="../static/img/Splash screen.png" class="imagem" alt="">
             </div>
+            {% endif %}
             <div class="item-desc">
               <div class="name-year">
                 <div class="item-name">{{ item.name }}</div>
@@ -44,31 +51,42 @@
               <span class="item-type">Troca</span>
             </div>
           </div>
+          {% endif %}
           {% endfor %}
         </div>
       </div>
 
       <div class="new-arrivals">
         <span class="novos-items">Novas Doações</span>
-        <a class="veja-mais" href="#">Veja mais!</a>
+        <a class="veja-mais" href="{{ url_for('explorar', tipo='Doação') }}">Veja mais!</a>
       </div>
+      
 
       <div class="carousel-container2">
         <div class="carousel">
           <!-- Itens do carrossel -->
           {% for item in items %}
+          {% if item.item_type == 'Doação' %}
+            
           <div class="item">
+            {% if item.image_blob != none %}
+            <div class="imagem-wrapper ">
+              <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
+            </div>
+            {% else %}
             <div class="imagem-wrapper ">
               <img src="../static/img/Splash screen.png" class="imagem" alt="">
             </div>
+            {% endif %}
             <div class="item-desc">
               <div class="name-year">
                 <div class="item-name">{{ item.name }}</div>
                 <div class="item-year">{{ item.year_acquired }}</div>
               </div>
-              <span class="item-type">Troca</span>
+              <span class="item-type">Doação</span>
             </div>
           </div>
+          {% endif %}
           {% endfor %}
         </div>
       </div>
