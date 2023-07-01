@@ -6,6 +6,7 @@ from routes.register_route import registro_bp # Importe o blueprint de registro
 from routes.login_route import login_bp
 from routes.home_route import home_bp
 from routes.swap_route import swap_bp
+from routes. explorar_route import explorar_bp
 from trocatroca0_orm import *
 #------------------------------------------------ Criar App -------------------------------------------------------------
 app = Flask(__name__, template_folder='templates')
@@ -26,6 +27,7 @@ app.register_blueprint(registro_bp)  # Registrar o blueprint de registro na apli
 app.register_blueprint(login_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(swap_bp)
+# app.register_blueprint(explorar_bp)
 
 
 app.secret_key = '342342354525351sadad1eqd'  # Chave secreta para gerar sessões seguras
@@ -34,6 +36,21 @@ app.secret_key = '342342354525351sadad1eqd'  # Chave secreta para gerar sessões
 engine = create_engine('mysql+pymysql://admin:troca2023@trocatroca-db.co7hqdo9x7ll.us-east-1.rds.amazonaws.com:3306/trocatroca0')
 Session = sessionmaker(bind=engine)
 
+
+@app.route('/explorar', methods=['GET', 'POST'])
+@app.route('/explorar/<tipo>', methods=['GET', 'POST'])
+def explorar(tipo=None):
+    sessio = Session()
+    if tipo:
+        # Filtrar os itens por tipo (troca ou doação)
+        items = sessio.query(Item).filter_by(item_type=tipo).all()
+    else:
+        # Carregar todos os itens
+        items = sessio.query(Item).all()
+    return render_template('explorar.html', items=items)
+
+
+
 @app.route('/logout')
 def logout():
     # Remova as informações do usuário da sessão
@@ -41,14 +58,6 @@ def logout():
     session.pop('username', None)
     # Redirecione para a página de login
     return redirect('/login')
-
-@app.route('/explorar', methods=['GET', 'POST'])
-def explorar():
-    sessio = Session()
-    items = sessio.query(Item).all()
-    return render_template('explorar.html', items=items)
-    # Rota principal
-
 
 @app.route('/inserir')
 def inserir():

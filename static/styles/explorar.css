@@ -36,7 +36,7 @@ body {
 }
 header{
     width: 100%;
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
 }
 .top {
     font-family: 'Fira Sans', sans-serif;
@@ -71,6 +71,35 @@ header{
     border-radius: 22px;
     padding: 12px;
 }
+
+.filter-bar{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #F5F5F5;
+
+}
+.filter-bar button{
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #F5F5F5;
+    background-color: #098645;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    min-width: 95px;
+    border-radius: 12px;
+}
+.filter-troca{
+    margin-right: 30px;
+    
+}
 .content{
     font-family: 'Fira Sans', sans-serif;
     width: 100%;
@@ -79,7 +108,7 @@ header{
 }
 .item{
     width: 100%;
-    height: 431px;
+
     background-color: white;
     margin-bottom: 20px;
 }
@@ -104,7 +133,7 @@ header{
 }
 .imagem-wrapper{
     width: 100%;
-    height: 298px;
+    height: 35.308vh;
     overflow: hidden;
     position: relative; /* Para fazer que a imagem com position-absolute respeite a sua posição consoante este selector, ou evitar que saia do mesmo */
 }
