@@ -20,18 +20,40 @@
         </header>
 
         <div class="box-bordy">
-          <div class="register-text">Trocar chaves</div>
+          <div class="register-text">Registrar transação</div>
           <form method="POST" action="/swap">
+
+            <label for="swap_type">Qual o tipo de transação?</label>
+            <select id="swap_type" name="swap_type">
+              <option value="Troca" selected>Troca</option>
+              <option value="Doação">Doação</option>
+            </select>
+
+            {% if swap_type == 'Doação' %}
+              <label for="donation_party_type">Você está doando ou recebendo?</label>
+              <select id="donation_party_type" name="donation_party_type">
+                <option value="Doando">'Doando'</option>
+                <option value="Recebendo">'Recebendo'</option>
+              </select>
+            {% endif %}
             
             <div class="input-container">
-              <label for="iditem_receive">seu ID:</label>
+              <label for="iditem_receive">Seu ID:</label>
               <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
-              <label for="iditem_give">ID do item que você dará:</label>
-              <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+              
+              {% if donation_party_type is None or donation_party_type ==  'Doando' %}
+                <label for="iditem_give">ID do item que você dará:</label>
+                <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+              {% endif %}
+
               <label for="iditem_receive">ID de user da outra parte da troca:</label>
               <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">  
-              <label for="iditem_receive">ID do item desejado:</label>
-              <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
+              
+              {% if donation_party_type is None or donation_party_type ==  'Recebendo' %}
+                <label for="iditem_receive">ID do item desejado:</label>
+                <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
+              {% endif %}
+
               <button type="submit" class="button-submit">Submit</button>
             </div>
           </form>
