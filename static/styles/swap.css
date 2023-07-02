@@ -178,6 +178,7 @@ header{
     background-color: green;
     position: relative;
     overflow: hidden;
+    border-radius: 15px;
   }
 
   .green-bar-fill {
@@ -188,6 +189,7 @@ header{
     position: absolute;
     top: 0;
     left: 0;
+    border-radius: 15px;
     animation: green-bar-fill-animation 300s linear;
   }
 
