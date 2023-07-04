@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `trocatroca0`.`item` (
   `iditem` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(450) COLLATE 'utf8mb3_general_ci' NULL DEFAULT NULL,
   `image_path` VARCHAR(450) COLLATE 'utf8mb3_general_ci' NULL DEFAULT NULL,
-  `image_blob` LONGBLOB NULL DEFAULT NULL,
+  -- `image_blob` LONGBLOB NULL DEFAULT NULL,
   `model_color` VARCHAR(450) COLLATE 'utf8mb3_general_ci' NULL DEFAULT NULL,
   `brand_species` VARCHAR(450) COLLATE 'utf8mb3_general_ci' NULL DEFAULT NULL,
   `year_acquired` VARCHAR(45) COLLATE 'utf8mb3_general_ci' NULL DEFAULT NULL,
