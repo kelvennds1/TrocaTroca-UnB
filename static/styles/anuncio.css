@@ -1,149 +1,242 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #F5F5F5;
+    overflow-y: scroll;
+    margin-top: 64px;
+    width: 100vw;
+    max-width: 800px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F5F5;
+    font-family: 'Fira Sans', sans-serif;
 }
-.wrapper{
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.register-container {  
-  padding-left: 20px;
-  padding-right: 20px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 500px;
-  width: 80vh;
-  height: 100vh;
+.wrapper {
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 header{
-  margin-top: 5vw;
-  display: flex;
-  flex-direction: row;
-  align-items:center;
-  justify-content: space-between;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: inherit;
+    padding: 0px 35px;
 }
 .troca-troca{
-  font-style: normal;
-  font-weight: 800;
+  font: inherit;
+  font-weight: bolder;
   font-size: 32px;
-  font-family: 'Dosis';
-  font-feature-settings: 'kern' off;
   color: #3C3C3C;
 }
-.register-text{ 
-  margin-top: 15.054vw;
-  margin-bottom: 5vw;
-  font-family: 'Dosis';
-  font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  color: #3C3C3C;   
+.announced-item{
+  margin-top: 40px;
+  padding: 0 27px;
 }
-.input-container {
-  display: flex;
-  margin-bottom: 15px;
-}
-.login-input {
-  flex: 1;
-  padding: 10px;
-  width: 70vw;
-  border: 0;
-  background-color: #e9e9e9;
-  border-radius: 10px;
-  outline: none;
-  font-size: 20px;
-  font-family: 'Dosis';
-  font-weight: lighter;
-}
-.login-input::placeholder{
-  color: #717171;
-  font-family: 'Dosis';
-  font-weight:400;
-  font-size: 18px;
-}
-.register-btn {
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Rubik';
-  font-weight: bolder;
-  border-radius: 22px;
-  padding: 10px;
-  width: 90.092vw;
-  max-width: 505px;
-  border: 0;
-  background: linear-gradient(97.86deg, #0cce6b, #066031);
-  position: absolute;
-  font-size: 24px;
-  color: #f5f5f5;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.login-text {
-  text-align: center;
-  margin-top: 22.054vw;
-  margin-bottom: 42.054vw;
-  font-size: 14px;
-  color: #8D8D8D;
-}
-.login-link {
-  color: #0FE677;
-  font-weight: bold;
-  text-decoration: none;
-}
-.waves-container {
-  padding: 0;
-  top: 90%;
-  position: fixed;
-  align-items: center;
-  height: 100px;
-  background: url('waves.svg') center bottom no-repeat;
-}
-.image-container {
-  max-height: 40vh;
+.image-wrapper{
+  width: 86.957vw;
+  max-width: 750px;
+  height: 29.018vh;
+
   overflow: hidden;
-  max-width: 80vw;
-  /* top: 10vh; */
   position: relative;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  @media (min-width:414px){
+    height: 400px;
+  }
 }
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
+.imagem {
+  width: 110%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
-
-.content-container {
+.item-tittle{
+  text-align: left;
+  margin-top: 20px;
+  color: #3C3C3C;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 28px;
+}
+.description{
+  overflow-y: scroll;
+  height: 135px;
+  margin-top: 20px;
+  font-weight: 300;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  color: black;
+  background-color: rgba(8, 140, 30, 0.14);
+}
+.year-brand-infos{
   margin-top: 10px;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  font-weight: 300;
+  font-size: 18px;
+  color: #4F4F4F;
 }
-/* !TODO: implement */
-.name-anuncio{
+.year-brand-infos span{
+  font-weight: bold;
+}
+.year-brand-infos2{
+  margin-top: 5px;
+  font-weight: 300;
+  font-size: 18px;
+  color: #4F4F4F;
+}
+.year-brand-infos2 span{
+  font-weight: bold;
+}
+.google-btn{
+  margin-top: 20px;
+}
 
+.outros-items{
+  margin-top: 20px;
+  text-align: left;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  color: #3C3C3C;
 }
-/* !TODO: implement */
-.desc-anuncio{
+.carousel-container {
+  width: 100vw;
+  max-width: 800px; /* Defina o tamanho máximo desejado para o carrossel */
+  margin: 0 auto; /* Centralizar o carrossel horizontalmente */
+  overflow-x: scroll; /* Habilita a rolagem horizontal */
+  white-space: nowrap; /* Impede que os itens quebrem linha */
+  scrollbar-width: none; /* Remover a barra de rolagem */
+  -ms-overflow-style: none; /* Remover a barra de rolagem*/
+}  
+.carousel {
+  width: fit-content;
+  display: flex;
+  flex-direction: row; /* Define a direção horizontal */
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 20px 20px 20px;
+  
+}
+.carousel {
+  /* Resto do seu código CSS para o carrossel */
 
+  /* Adicione as seguintes propriedades para a transição suave */
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
 }
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Oculta a barra de rolagem no Chrome, Safari e Opera */
+}
+.carousel-container {
+  scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+}
+.carousel-container2::-webkit-scrollbar {
+  display: none; /* Oculta a barra de rolagem no Chrome, Safari e Opera */
+}
+
+.carousel-container2{
+  scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+}
+.item {
+  width: 268px;
+  height: 246px;
+  flex: 0 0 auto; /* Define o tamanho automático para os itens */
+  margin-right: 30px; /* Espaçamento entre os itens */
+  background: #F5F5F5;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.imagem-wrapper {
+  width: 100%;
+  height: 174px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  position: relative; /* Para fazer que a imagem com position-absolute respeite a sua posição consoante este selector, ou evitar que saia do mesmo */
+}
+.imagem {
+  width: 110%;
+  /* código abaixo centra a imagem ao centro */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.item-desc{
+  width: 100%;
+  height: 74px;
+  padding: 0 20px 0 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Fira Sans', sans-serif;
+}
+.name-year{
+flex-direction: column;
+}
+.item-name{
+font-size: 18px;
+font-weight: 600;
+color: #3C3C3C;
+}
+.item-year{
+font-size: 14px;
+font-weight: 400;
+color: #0BAD59;
+}
+.item-type{
+font-size: 24px;
+font-weight: 800;
+color: #0BAD59;  
+}
+.buttons {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  border: 0;
+  width: 100%;
+  min-height: 79px;
+}
+.buttons button {
+  width: 100%;
+  border: 0;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+
+.last-div{
+  bottom: 0;
+  justify-self: flex-end;
+  font-size: 24px;
+  min-height: 1000px;
+}
+.btn-save{
+  color: #ECECEC;
+  background-color: #FF5858;
+}
+.btn-finish{
+  color: #ECECEC;
+  background-color: #0BAD59;
+}
+

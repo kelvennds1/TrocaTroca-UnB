@@ -63,10 +63,26 @@ function getMaxTranslate() {
   const contentWidth = carousel.scrollWidth;
   return containerWidth - contentWidth;
 }
-const hamburgerIcon = document.getElementById("hamburgerIcon");
-const sidebar = document.querySelector(".sidebar");
 
-hamburgerIcon.addEventListener("click", () => {
-  sidebar.classList.toggle("active");
+// Selecione todos os elementos com a classe '.item'
+var items = document.querySelectorAll('.item');
+
+// Adicione o evento de clique a cada item
+items.forEach(function(item) {
+  item.addEventListener('click', function() {
+    // Obtenha o ID do item clicado
+    var itemId = item.getAttribute('data-id');
+    
+    // Redirecione para a página de compra do produto usando o ID
+    window.location.href = '/anuncio/' + itemId;
+  });
 });
+
+
+// const hamburgerIcon = document.getElementById("hamburgerIcon");
+// const sidebar = document.querySelector(".sidebar");
+
+// hamburgerIcon.addEventListener("click", () => {
+//   sidebar.classList.toggle("active");
+// });
 

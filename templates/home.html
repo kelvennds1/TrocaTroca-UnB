@@ -2,9 +2,22 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <link rel="stylesheet" href="../static/styles/home.css" />
   <link rel="stylesheet" href="../static/styles/sidebar.css" />
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script>
+      if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/static/service-worker.js')
+              .then(function(registration) {
+                  console.log('Service Worker registrado com sucesso:', registration);
+              })
+              .catch(function(error) {
+                  console.log('Falha ao registrar o Service Worker:', error);
+              });
+      }
+  </script>
 </head>
 <body>
   <div class="home">
@@ -33,7 +46,7 @@
           <!-- Itens do carrossel -->
           {% for item in items %}
           {% if item.item_type == 'Troca' %}
-          <div class="item">
+          <div class="item" data-id= "{{ item.iditem }}">
             {% if item.image_blob != none %}
             <div class="imagem-wrapper ">
               <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
@@ -68,7 +81,7 @@
           {% for item in items %}
           {% if item.item_type == 'Doação' %}
             
-          <div class="item">
+          <div class="item" data-id= "{{ item.iditem }}">
             {% if item.image_blob != none %}
             <div class="imagem-wrapper ">
               <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
