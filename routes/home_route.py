@@ -24,3 +24,9 @@ def home():
     else:
         # Se o usuário não estiver logado, redirecione para a página de login
         return redirect('/login')
+
+def visualizar_itens():
+    # Execute a query para obter todos os itens do usuário logado, ordenados pela data mais recente
+    itens = Item.query.filter_by(user_id=Session["user_id"]).order_by(Item.data.desc()).all()
+
+    return render_template("visualizar_itens.html", itens=itens)

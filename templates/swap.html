@@ -15,15 +15,20 @@
 
             <div class="tag-superior">
               <div class="troca-troca">TrocaTroca</div>
+<<<<<<< HEAD
               <img class="image-logo" src="/static/img/logo_trocatroca.svg" alt="logo">
+=======
+              <img class="image-logo" src="../static/img/logo-trocatroca.png" alt="logo">
+              {# <img class="image-logo" src="/TrocaTroca-UnB/static/img/logo-trocatroca.png" alt="logo"> #}
+>>>>>>> 0a130516345b87c9df2b2a211a9f4724c033219b
             </div>
         </header>
 
         <div class="box-bordy">
-          <div class="register-text">Trocar chaves</div>
+          <div class="register-text">Registrar transação</div>
           <form method="POST" action="/swap">
-            
             <div class="input-container">
+<<<<<<< HEAD
               <label for="iditem_receive">seu ID:</label>
               <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
               <label for="iditem_give">Digite o ID do item que você dará em troca:</label>
@@ -33,14 +38,88 @@
               <label for="iditem_receive">Digite o ID do item desejado:</label>
               <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
               <button type="submit" class="button-submit">Submit</button>
+=======
+
+              <label for="swap_type">Qual o tipo de transação?</label>
+              <select id="swap_type" name="swap_type" >
+              {#  <option selected disabled hidden style='display: none' value=''>selecione</option> #}
+                <option value="Troca" >Troca</option>
+                <option value="doacao">Doação</option>
+              </select>
+          
+              <div id="doacao-section" style="display: none;">
+                <label for="donation_party_type">Você está doando ou recebendo?</label>
+                {# !TODO:  #}
+                <select id="donation_party_type" name="donation_party_type" >
+                  {# !TODO: select Doando e update idperson_other_party cm o js de baixo imediatamente no que user clica em Doação.
+                     Atualmente só é atualizado dps q user clica em Recebendo e Doação novamente  #}
+                  <option  value="Doando">Doando</option> 
+                  <option  value="Recebendo">Recebendo</option> 
+                  <option selected disabled hidden style='display: none' value=''>selecione</option>
+                </select>
+              </div>
+          
+                <label for="idperson_this_party">Seu ID:</label>
+                <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">
+
+                <label for="iditem_give">ID do item que você dará:</label>
+                <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+          
+                <label for="idperson_other_party">ID de user da outra parte da troca:</label>
+                <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">
+
+
+                <label for="iditem_receive">ID do item desejado:</label>
+                <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">
+          
+                <button type="submit" class="button-submit">Submit</button>
+>>>>>>> 0a130516345b87c9df2b2a211a9f4724c033219b
             </div>
           </form>
         </div>
-       
-      <br>
-      <br>
-      <br>
-          <!-- {# !TODO: this is clashing w route logic in swap.py , needs clarity #} -->
+       {# // deactivate input fields based on transaction type select #}
+       <script>
+        const swapTypeSelect = document.getElementById("swap_type");
+        const doacaoSection = document.getElementById("doacao-section");
+        const doacaoPartyTypeSelect = document.getElementById("donation_party_type");
+        const idItemGiveInput = document.getElementById("iditem_give");
+        const idItemReceiveInput = document.getElementById("iditem_receive");
+      
+        // Handle swap type change
+        swapTypeSelect.addEventListener("change", function() {
+          const selectedOption = swapTypeSelect.options[swapTypeSelect.selectedIndex].value;
+      
+          if (selectedOption === "doacao") {
+            doacaoSection.style.display = "block";
+          } else {
+            doacaoSection.style.display = "none";
+          }
+        });
+      
+        // Disable input fields for donation based on selected party type
+        doacaoPartyTypeSelect.addEventListener("change", function() {
+          const selectedOption = doacaoPartyTypeSelect.options[doacaoPartyTypeSelect.selectedIndex].value;
+          if (selectedOption === "Doando") {
+            idItemGiveInput.disabled = false;
+            idItemGiveInput.readOnly = false;
+            idItemGiveInput.value = "";
+      
+            idItemReceiveInput.readOnly = true;
+            idItemReceiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
+            // idItemReceiveInput.disabled = true;
+          } else if (selectedOption === "Recebendo"){
+            idItemReceiveInput.disabled = false;
+            idItemReceiveInput.readOnly = false;
+            idItemReceiveInput.value = "";
+      
+            idItemGiveInput.readOnly = true;
+            idItemGiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
+            // idItemGiveInput.disabled = true;
+          }
+        });
+      </script>
+      
+       {#  // redirects 1st party to success when 2nd party registers rtansaction #}
         <script>
           function checkSwapStatus() {
             fetch('/swap_status')
@@ -55,7 +134,7 @@
                 }
               });
           }
-          setInterval(checkSwapStatus, 1000);
+          setInterval(checkSwapStatus, 5000000);
         </script>
     
         <div class="waves-container">
