@@ -2,22 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
   <link rel="stylesheet" href="../static/styles/home.css" />
   <link rel="stylesheet" href="../static/styles/sidebar.css" />
-  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-  <script>
-      if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/static/service-worker.js')
-              .then(function(registration) {
-                  console.log('Service Worker registrado com sucesso:', registration);
-              })
-              .catch(function(error) {
-                  console.log('Falha ao registrar o Service Worker:', error);
-              });
-      }
-  </script>
 </head>
 <body>
   <div class="home">
@@ -26,27 +13,18 @@
         <img class="user-pic-icon" alt="" src="../static/img/User pic.svg" />
         <div class="message">
           <p class="ola-user">Olá, {{ session['username'] }}!</p>
-          <p class="wellcome">Bem-vindo de volta!</p>
         </div>
         <img class="hamburger-icon" alt="" src="../static/img/Hamburger.svg" id="hamburgerIcon"/>
       </div>
-      <div class="search-input">
-        <input class="search-bar" type="text" id="search-bar" placeholder="Pesquise por livros, violão e muito mais..."/>
-        <!-- <img src="../static/img/search.svg" class='searcha' alt=""> -->
-      </div>
     </header>
     <div class="main-page-content">
-      <div class="new-arrivals">
-        <span class="novos-items">Novos Itens de Troca</span>
-        <a class="veja-mais" href="{{ url_for('explorar', tipo='Troca') }}">Veja mais!</a>
-      </div>
 
       <div class="carousel-container">
         <div class="carousel">
           <!-- Itens do carrossel -->
           {% for item in items %}
           {% if item.item_type == 'Troca' %}
-          <div class="item" data-id= "{{ item.iditem }}">
+          <div class="item">
             {% if item.image_blob != none %}
             <div class="imagem-wrapper ">
               <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
@@ -69,40 +47,6 @@
         </div>
       </div>
 
-      <div class="new-arrivals">
-        <span class="novos-items">Novas Doações</span>
-        <a class="veja-mais" href="{{ url_for('explorar', tipo='Doação') }}">Veja mais!</a>
-      </div>
-      
-
-      <div class="carousel-container2">
-        <div class="carousel">
-          <!-- Itens do carrossel -->
-          {% for item in items %}
-          {% if item.item_type == 'Doação' %}
-            
-          <div class="item" data-id= "{{ item.iditem }}">
-            {% if item.image_blob != none %}
-            <div class="imagem-wrapper ">
-              <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
-            </div>
-            {% else %}
-            <div class="imagem-wrapper ">
-              <img src="../static/img/Splash screen.png" class="imagem" alt="">
-            </div>
-            {% endif %}
-            <div class="item-desc">
-              <div class="name-year">
-                <div class="item-name">{{ item.name }}</div>
-                <div class="item-year">{{ item.year_acquired }}</div>
-              </div>
-              <span class="item-type">Doação</span>
-            </div>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
       <div class="last-container"></div>
       <div class="navigation">
         <nav class="navbar">

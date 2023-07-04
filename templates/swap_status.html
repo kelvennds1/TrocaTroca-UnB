@@ -21,9 +21,9 @@
 
         if (timeRemaining <= 0) {
           clearInterval(interval);
-          $("#countdown").text("Tempo expirado! Tente novamente, máximo de 5 min entre as demandas de troca por cada participante :)) ");
+          $("#countdown").text("Tempo expirado! Tente novamente, máximo de 5 min entre as demandas de transação por cada participante :)) ");
           $("#animation").hide();
-          $("#message").text("Troca não efetivada, por favor tente novamente <3");
+          $("#message").text("Transação não efetivada, por favor tente novamente <3");
         }
 
         timeRemaining--;
@@ -49,7 +49,7 @@
             }
           },
           error: function() {
-            console.log('!!!!!!!!!1 erro no ajax checando o status da troca, estado success definido por uma coluna da p2 estar não null no swap table');
+            console.log('!!!!!!!!!1 erro no ajax checando o status da transação, estado success definido por uma coluna da p2 estar não null no swap table');
           }
         });
       }
@@ -64,7 +64,7 @@
       </div>
       <div class="tag-superior">
           <div class="troca-troca">TrocaTroca</div>
-          <img class="image-logo" src="/TrocaTroca-UnB/static/img/logo-trocatroca.png" alt="logo">
+          <img class="image-logo" src="/TrocaTroca-UnB/static/img/logo_trocatroca.svg" alt="logo">
       </div>
     </header>
 
