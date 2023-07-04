@@ -64,9 +64,8 @@ def inserir():
     return render_template('inserir_anuncio.html')
     
 # testa display de item, imagem
-@app.route('/itemunicoid2')
-def display_item():
-    iditem = 2
+@app.route('/itemunicoid<int:iditem>')
+def display_item(iditem):
     db = Session()
     item = db.query(Item).filter_by(iditem=iditem).first()
     db.close()
