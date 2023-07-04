@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # ---------------------------------------- Importar as classes relevantes ------------------------------------------------------
 from flask import Flask, render_template, request, redirect, session
 from sqlalchemy import create_engine
