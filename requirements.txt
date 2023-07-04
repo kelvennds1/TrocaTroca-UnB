@@ -14,4 +14,4 @@ SQLAlchemy-Utils==0.41.1
 typing_extensions==4.6.3
 Werkzeug==2.3.6
 
-pyz == 2022.1
+pytz == 2022.1
