@@ -16,12 +16,7 @@
 
             <div class="tag-superior">
               <div class="troca-troca">TrocaTroca</div>
-<<<<<<< HEAD
               <img class="image-logo" src="/static/img/logo_trocatroca.svg" alt="logo">
-=======
-              
-              {# <img class="image-logo" src="/TrocaTroca-UnB/static/img/logo-trocatroca.png" alt="logo"> #}
->>>>>>> 0a130516345b87c9df2b2a211a9f4724c033219b
             </div>
         </header>
 
@@ -29,17 +24,6 @@
           <div class="register-text">Registrar transação</div>
           <form id="swap-form" method="POST" action="/swap">
             <div class="input-container">
-<<<<<<< HEAD
-              <label for="iditem_receive">seu ID:</label>
-              <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
-              <label for="iditem_give">Digite o ID do item que você dará em troca:</label>
-              <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
-              <label for="iditem_receive">Digite o nº do ID do receptor:</label>
-              <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">  
-              <label for="iditem_receive">Digite o ID do item desejado:</label>
-              <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
-              <button type="submit" class="button-submit">Submit</button>
-=======
 
               <label for="swap_type">Qual o tipo de transação?</label>
               <select id="swap_type" name="swap_type" >
@@ -74,20 +58,8 @@
                 <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">
           
                 <button type="submit" class="button-submit">Submit</button>
->>>>>>> 0a130516345b87c9df2b2a211a9f4724c033219b
             </div>
           </form>
-
-
-          {# countdown bar, pops up after submit #}
-          <div id="cd_bar" style="display: none;"> {#  #}
-            <div class="texto_status">Status da troca:</div>
-              <div id="green-bar" class="" > {# class green-bar    #}
-                <div id="animation" class="" ></div> {# class green-bar-fill  #}
-              </div>
-            <div id="countdown" class="countdown"></div>
-          </div>
-
 
         </div>
        {# t #}
@@ -131,81 +103,6 @@
           }
         });
       </script>
-      <script>
-
-        const cdBar = document.getElementById("cd_bar");
-        const greenBar = document.getElementById("green-bar");
-        const animation = document.getElementById("animation");
-        const countdown = document.getElementById("countdown");
-
-        const swapForm = document.getElementById("swap-form");
-
-         // countdown.addclasslist()
-
-          function startCountdown() {
-            var expiration_time = 300; // used as seconds
-            var startTime = Date.now();
-            var timeRemaining = expiration_time;
-        
-            var interval = setInterval(function() {
-              var minutes = Math.floor(timeRemaining / 60);
-              var seconds = timeRemaining % 60;
-        
-              var countdownText = minutes + " minutos " + seconds + " segundos";
-              $("#countdown").text(countdownText);
-        
-              if (timeRemaining <= 0) {
-                clearInterval(interval);
-                $("#countdown").text("Tempo expirado! Tente novamente, máximo de 5 min entre as demandas de transação por cada participante :)) ");
-                $("#animation").hide();
-                $("#message").text("Transação não efetivada, por favor tente novamente <3");
-              }
-        
-              timeRemaining--;
-            }, 1000);
-        
-            // redirects success page when p2kGive is in swap table / fail when time runs out
-            function checkSwapStatus() {
-              var elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-        
-              if (elapsedTime >= expiration_time) {
-                clearInterval(interval);
-                window.location.href = '/swap_fail';
-                return;
-              }
-        
-              $.ajax({
-                url: '/swap_status/check',
-                type: 'GET',
-                data: { idswap: '{{ idswap }}' },
-                success: function(data) {
-                  if (data.status === 'success') {
-                    clearInterval(interval);
-                    window.location.href = '/swap_success';
-                  }
-                },
-                error: function() {
-                  console.log('!!!!!!!!!1 erro no ajax checando o status da transação, estado success definido por uma coluna da p2 estar não null no swap table');
-                }
-              });
-            }
-        
-            checkSwapStatus();
-          }
-
-
-        function statusBar() {
-          cdBar.style.display = "block";
-         $("#animation").show();
-          greenBar.classList.add("green-bar");
-          animation.classList.add("green-bar-fill");
-          startCountdown();
-          checkSwapStatus();
-        }
-          
-        
-      </script>
-      
       
       
         <div class="waves-container">
