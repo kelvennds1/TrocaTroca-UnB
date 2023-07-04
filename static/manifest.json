@@ -1,7 +1,7 @@
 {
-    "name": "Meu PWA Flask",
-    "short_name": "PWA Flask",
-    "start_url": "/",
+    "name": "TrocaTroca-UnB ",
+    "short_name": "TrocaTroca",
+    "start_url": "/home",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#3367D6",

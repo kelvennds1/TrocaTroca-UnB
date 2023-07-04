@@ -17,14 +17,6 @@ body {
     justify-content: center;
     background-color: #F5F5F5;
 }
-.body::-webkit-scrollbar {
-    display: none; /* Oculta a barra de rolagem no Chrome, Safari e Opera */
-}
-  
-.body {
-    scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
-}
-  
 .home {
     display: flex;
     max-width: 800px;
@@ -111,6 +103,7 @@ header{
 
     background-color: white;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 .item-header{
     padding: 15px;

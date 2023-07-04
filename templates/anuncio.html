@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/styles/anuncio.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+        <header>
+            <div class="back-button">
+                <a href="/home"><img class="back-button-img" alt="" src="../static/img/back-button.svg" /></a>
+            </div>
+            <p class="troca-troca">TrocaTroca</p>
+        </header>
+
+        <div class="announced-item">
+            <div class="image-wrapper">
+                <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" alt="" class="imagem">
+            </div>
+            <p class="item-tittle">{{ item.name }}</p>
+            <div class="description">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, beatae a molestias modi cum eligendi dolorem nisi rerum dolorum nemo
+                <br>
+                <br>
+                libero in ipsam corrupti iusto praesentium aliquam culpa, iste hic magni mollitia sint assumenda! Mollitia reiciendis neque natus sed! 
+            </div>
+            <div class="year-brand-infos">
+                <p>Fabricante <span>{{ item.brand_species }}</span> | Ano: <span>{{item.year_acquired }}</span></p>
+            </div>
+            <div class="year-brand-infos2">
+                <p>Condição: <span>{{ item.condition }}</span></p>
+            </div>
+            <img src="../static/img/google-search-btn.svg" alt="" class="google-btn">
+            <p class="outros-items">Outros items</p>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel">
+                <!-- Itens do carrossel -->
+                {% for item in items %}
+                <div class="item" data-id= "{{ item.iditem }}">
+                    {% if item.image_blob != none %}
+                    <div class="imagem-wrapper ">
+                    <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
+                    </div>
+                    {% else %}
+                    <div class="imagem-wrapper ">
+                    <img src="../static/img/Splash screen.png" class="imagem" alt="">
+                    </div>
+                    {% endif %}
+                    <div class="item-desc">
+                    <div class="name-year">
+                        <div class="item-name">{{ item.name }}</div>
+                        <div class="item-year">{{ item.year_acquired }}</div>
+                    </div>
+                    <span class="item-type">Troca</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="buttons">
+        <button class="btn-save">Salvar item</button>
+        <button class="btn-finish">Continuar</button>
+    </div>
+
+  </body>
+</html>
