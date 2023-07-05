@@ -8,53 +8,55 @@
   <script>
     var expiration_time = 300; // used as seconds
     $(document).ready(function() {
-      var interval = setInterval(checkSwapStatus, 1000);
       var startTime = Date.now();
-      var timeRemaining = expiration_time; 
-
-      var interval = setInterval(function() {
+      var timeRemaining = expiration_time;
+  
+      var countdownInterval = setInterval(function() {
         var minutes = Math.floor(timeRemaining / 60);
         var seconds = timeRemaining % 60;
-
+  
         var countdownText = minutes + " minutos " + seconds + " segundos";
         $("#countdown").text(countdownText);
-
+  
         if (timeRemaining <= 0) {
-          clearInterval(interval);
+          clearInterval(countdownInterval);
           $("#countdown").text("Tempo expirado! Tente novamente, máximo de 5 min entre as demandas de transação por cada participante :)) ");
           $("#animation").hide();
           $("#message").text("Transação não efetivada, por favor tente novamente <3");
         }
-
+  
         timeRemaining--;
       }, 1000);
-
+  
       function checkSwapStatus() {
         var elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-        
+  
         if (elapsedTime >= expiration_time) {
-          clearInterval(interval);
+          clearInterval(swapStatusInterval);
           window.location.href = '/swap_fail';
           return;
         }
-
+  
         $.ajax({
           url: '/swap_status/check',
           type: 'GET',
-          data: { idswap: '{{ idswap }}' }, 
+          data: { idswap: '{{ idswap }}', user_id: '{{ user_id }}' },
           success: function(data) {
             if (data.status === 'success') {
-              clearInterval(interval);
-              window.location.href = '/swap_success';
+              clearInterval(swapStatusInterval);
+              window.location.href = '/swap_success?user_id={{ user_id }}';
             }
           },
           error: function() {
-            console.log('!!!!!!!!!1 erro no ajax checando o status da transação, estado success definido por uma coluna da p2 estar não null no swap table');
+            console.log('Erro no AJAX: O status da transação não pôde ser verificado. O estado de sucesso é definido por uma coluna "p2" não nula na tabela de trocas.');
           }
         });
       }
+  
+      var swapStatusInterval = setInterval(checkSwapStatus, 1000);
     });
   </script>
+  
 </head>
 <body>
   <div id="wrapper">
