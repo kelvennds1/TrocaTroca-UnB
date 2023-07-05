@@ -141,7 +141,7 @@ header{
     position: relative; /* Para fazer que a imagem com position-absolute respeite a sua posição consoante este selector, ou evitar que saia do mesmo */
 }
 .imagem {
-    width: 110%;
+    width: 150%;
     /* código abaixo centra a imagem ao centro */
     position: absolute;
     top: 50%;
@@ -161,9 +161,13 @@ header{
     flex-direction: column;
 }
 .item-name{
+    width: 230px;
     font-size: 24px;
     font-weight: 600;
     color: #3C3C3C;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .item-year{
     font-size: 14px;
@@ -179,7 +183,7 @@ header{
     bottom: 0;
     justify-self: flex-end;
     font-size: 24px;
-    min-height: 1000px;
+    min-height: 10000px;
 }
 .navigation{
     display: flex;

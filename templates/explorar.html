@@ -11,9 +11,7 @@
         <div class="top">
           <div class="top-left">
             <div class="back-button">
-              <!-- <div class="back-button-child"></div> -->
               <a href="/home"><img class="back-button-img" alt="" src="../static/img/back-button.svg" /></a>
-              <!-- <a href="/login" class="back-link"></a> -->
             </div>
             <p class="page-name">Explorar</p>
           </div>
@@ -21,7 +19,6 @@
         </div>
         <div class="search-input">
           <input class="search-bar" type="text" id="search-bar" placeholder="Pesquise por livros, violão e muito mais..."/>
-          <!-- <img src="../static/img/search.svg" class='searcha' alt=""> -->
         </div>
         <div class="filter-bar">
             <button type="button" class="filter-troca" id="filter-troca">Troca</button>
@@ -36,23 +33,27 @@
               <div class="item-header">
                 <img class="owner-pic" alt="" src="../static/img/User pic.svg"/>
                 <div class="owner-info">
-                  <div class="item-owner">Elma Maria</div>
-                  <div class="instagram">@elma.maria</div>
+                  <div class="item-owner">{{ pessoas[item.person_idperson].name }}</div>
+                  <div class="instagram">UnB</div>
                 </div>
               </div>
-              {% if item.image_blob != none %}
+              {% if item.image_blob != none or None %}
             <div class="imagem-wrapper ">
               <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
             </div>
             {% else %}
             <div class="imagem-wrapper ">
-              <img src="../static/img/Splash screen.png" class="imagem" alt="">
+              <img src="../static/img/sem-foto.jpg" class="imagem" alt="">
             </div>
             {% endif %}
               <div class="item-desc">
                 <div class="name-year">
                   <div class="item-name">{{ item.name }}</div>
+                  {% if item.category_idcategory == 28 %}
+                  <div class="item-year">Raça: {{ item.brand_species }} | Ano: {{ item.year_acquired }}</div>
+                  {% else %}
                   <div class="item-year">Fabricante: {{ item.brand_species }} | Ano: {{ item.year_acquired }}</div>
+                  {% endif %}
                 </div>
                 {% if item.item_type == "Troca" %}
                 <span class="item-type">Troca</span>

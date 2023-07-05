@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from trocatroca0_orm import Item  # Importe as classes relevantes
+from trocatroca0_orm import Item, Person  # Importe as classes relevantes
 
 sys.path.append("../routes")
 explorar_bp = Blueprint('explorar', __name__)
@@ -16,11 +16,12 @@ sessio = Session()
 @explorar_bp.route('/explorar/<tipo>', methods=['GET', 'POST'])
 def explorar(tipo=None):
     sessio = Session()
+    pessoas = sessio.query(Person).all()
     if tipo:
         # Filtrar os itens por tipo (troca ou doação)
         items = sessio.query(Item).filter_by(item_type=tipo).all()
     else:
         # Carregar todos os itens
         items = sessio.query(Item).all()
-    return render_template('explorar.html', items=items)
+    return render_template('explorar.html', items=items,pessoas=pessoas)
 

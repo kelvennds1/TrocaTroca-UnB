@@ -188,6 +188,10 @@ header{
   flex-direction: column;
 }
 .item-name{
+   width: 150px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;  
   font-size: 18px;
   font-weight: 600;
   color: #3C3C3C;

@@ -1,78 +1,58 @@
 
 /* registrar css begins */
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+
+* { 
   margin: 0;
   padding: 0;
-  overflow: hidden;
-}
-*:focus {
-  outline: none;
-}
+  box-sizing: border-box;
+} 
 body {
-  margin: 0;
-  padding: 0;
+  overflow-y: scroll;
+  margin-top: 64px;
+  width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   background-color: #F5F5F5;
+  font-family: 'Fira Sans', sans-serif;
 }
-.wrapper{
-  margin: 0;
+.wrapper {
+  max-width: 800px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.register-container {  
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  max-width: 500px;
-  width: 80vh;
-  height: 100vh;
+  justify-content: flex-start;
 }
 header{
-  margin-top: 5vw;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items:center;
+  align-items: center;
   justify-content: space-between;
-}
-
-.tag-superior {
-  width: 60%;
-  display: flex;
-  align-items: flex-end;
-  flex-direction: row;
-  margin: 1em 0em 0em 0em;
-}
-.image-logo{
-  width: 2.5em;
-  height: 2.5em;
+  font-family: inherit;
+  padding: 0px 35px;
 }
 .troca-troca{
-  font-style: normal;
-  font-weight: 800;
-  font-size: 32px;
-  font-family: 'Dosis';
-  font-feature-settings: 'kern' off;
-  color: #3C3C3C;
-  margin: 0.6em 0.2em 0em 0em;
+font: inherit;
+font-weight: bolder;
+font-size: 32px;
+color: #3C3C3C;
 }
-
-.box-bordy{
+.swap-container{
   display: flex;
   flex-direction: column;
  
  
 }
-.register-text{ 
+.tittle{ 
   margin-top: 15.054vw;
   margin-bottom: 1vw;
   font-family: 'Dosis';

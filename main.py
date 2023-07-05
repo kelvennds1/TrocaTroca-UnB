@@ -6,6 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from routes.register_route import registro_bp # Importe o blueprint de registro
 from routes.login_route import login_bp
+from routes.logout_route import logout_bp
 from routes.home_route import home_bp
 from routes.swap_route import swap_bp
 from routes.explorar_route import explorar_bp
@@ -29,6 +30,7 @@ def index():
 
 app.register_blueprint(registro_bp)  # Registrar o blueprint de registro na aplicação Flask
 app.register_blueprint(login_bp)
+app.register_blueprint(logout_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(swap_bp)
 app.register_blueprint(explorar_bp)
@@ -57,13 +59,7 @@ def explorar(tipo=None):
 
 
 
-@app.route('/logout')
-def logout():
-    # Remova as informações do usuário da sessão
-    session.pop('user_id', None)
-    session.pop('username', None)
-    # Redirecione para a página de login
-    return redirect('/login')
+
 
 @app.route('/inserir')
 def inserir():

@@ -32,7 +32,6 @@
       </div>
       <div class="search-input">
         <input class="search-bar" type="text" id="search-bar" placeholder="Pesquise por livros, violão e muito mais..."/>
-        <!-- <img src="../static/img/search.svg" class='searcha' alt=""> -->
       </div>
     </header>
     <div class="main-page-content">
@@ -49,11 +48,11 @@
           <div class="item" data-id= "{{ item.iditem }}">
             {% if item.image_blob != none %}
             <div class="imagem-wrapper ">
-              <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
+              <img src="data:image/png;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
             </div>
             {% else %}
             <div class="imagem-wrapper ">
-              <img src="../static/img/Splash screen.png" class="imagem" alt="">
+              <img src="../static/img/sem-foto.jpg" class="imagem" alt="">
             </div>
             {% endif %}
             <div class="item-desc">
@@ -109,7 +108,7 @@
         <a href="anuncios.html">Anúncios</a>
         <a href="minha_conta.html">Minha Conta</a>
         <a href="{{ url_for('swap.swap') }}">Registrar Troca</a>
-        <a href="#">Logout</a>
+        <a href="/logout">Logout</a>
         <a href="#">Feedback</a>
       </div>
     </div>

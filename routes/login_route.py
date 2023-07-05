@@ -7,6 +7,7 @@ from trocatroca0_orm import Person  # Importe as classes relevantes
 
 sys.path.append("../routes")
 login_bp = Blueprint('login', __name__)
+logout_bp = Blueprint('logout', __name__)
 
 engine = create_engine('mysql+pymysql://admin:troca2023@trocatroca-db.co7hqdo9x7ll.us-east-1.rds.amazonaws.com:3306/trocatroca0')
 Session = sessionmaker(bind=engine)
@@ -14,6 +15,8 @@ db_session = Session()
 
 
 @login_bp.route('/login', methods=['GET', 'POST'])
+
+
 def login():
     if request.method == 'POST':
         # Obtenha os dados do formulário de login
@@ -38,3 +41,4 @@ def login():
             return jsonify({'error': 'Authentication failed'})
 
     return render_template('login.html', error=False)
+

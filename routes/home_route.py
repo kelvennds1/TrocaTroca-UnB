@@ -2,7 +2,7 @@ import sys
 from flask import Blueprint, render_template, redirect, session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from trocatroca0_orm import Item  # Importe as classes relevantes
+from trocatroca0_orm import Item # Importe as classes relevantes
 
 sys.path.append("../routes")
 home_bp = Blueprint('home', __name__)
@@ -16,7 +16,7 @@ db_session = Session()
 def home():
     
     # Verifique se o usuário está logado
-    if 'user_id' in session:
+    if 'user_id' in session and not None:
         sessio = Session()
         items = sessio.query(Item).all()
         return render_template('home.html', items=items)
@@ -30,3 +30,5 @@ def visualizar_itens():
     itens = Item.query.filter_by(user_id=Session["user_id"]).order_by(Item.data.desc()).all()
 
     return render_template("visualizar_itens.html", itens=itens)
+
+

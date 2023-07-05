@@ -15,15 +15,17 @@
         </header>
 
         <div class="announced-item">
+            
             <div class="image-wrapper">
+                {% if item.image_blob != none %}
                 <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" alt="" class="imagem">
+                {% else %}
+                <img src="../static/img/sem-foto.jpg" class="imagem" alt="">
+                {% endif %}
             </div>
+
             <p class="item-tittle">{{ item.name }}</p>
-            <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, beatae a molestias modi cum eligendi dolorem nisi rerum dolorum nemo
-                <br>
-                <br>
-                libero in ipsam corrupti iusto praesentium aliquam culpa, iste hic magni mollitia sint assumenda! Mollitia reiciendis neque natus sed! 
+            <div class="description">{{item.desc}}
             </div>
             <div class="year-brand-infos">
                 <p>Fabricante <span>{{ item.brand_species }}</span> | Ano: <span>{{item.year_acquired }}</span></p>
@@ -45,7 +47,7 @@
                     </div>
                     {% else %}
                     <div class="imagem-wrapper ">
-                    <img src="../static/img/Splash screen.png" class="imagem" alt="">
+                    <img src="../static/img/sem-foto.jpg" class="imagem" alt="">
                     </div>
                     {% endif %}
                     <div class="item-desc">
