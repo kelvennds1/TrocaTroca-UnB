@@ -47,7 +47,8 @@
                     <td> 
                         {{image_base64}}
                     {% if image_base64 %}
-                        <img src="data:image/jpeg;base64,{{ images_base64.img_count | safe }}" alt="Item Image">
+                       {# <img src="data:image/jpeg;base64,{{ images_base64.img_count | safe }}" alt="Item Image"> #}
+                        <img src="data:image/jpeg;base64,{{ image_base64 | safe }}" alt="Item Image">
                     {% else %}
                         <p>No image found</p>
                     {% endif %}</td>
