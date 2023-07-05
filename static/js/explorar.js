@@ -14,5 +14,18 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+// Selecione todos os elementos com a classe '.item'
+var items = document.querySelectorAll('.item');
+
+items.forEach(function(item) {
+  item.addEventListener('click', function() {
+    // Obtenha o ID do item clicado
+    var itemId = item.getAttribute('data-id');
+    
+    // Redirecione para a página de compra do produto usando o ID
+    window.location.href = '/anuncio/' + itemId;
+  });
+});
+
 
 

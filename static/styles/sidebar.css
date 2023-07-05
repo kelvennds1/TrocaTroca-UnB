@@ -10,7 +10,9 @@
   z-index: 9999;
   padding-top: 60px;
 }
-
+*:focus {
+  outline: none;
+}
 .sidebar.active {
   transform: translateX(0);
 }

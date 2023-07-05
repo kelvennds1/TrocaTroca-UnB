@@ -11,6 +11,7 @@ from routes.swap_route import swap_bp
 from routes.explorar_route import explorar_bp
 from routes.anuncio_route import anuncio_bp
 from trocatroca0_orm import *
+import ssl
 #------------------------------------------------ Criar App -------------------------------------------------------------
 app = Flask(__name__, template_folder='templates')
 
@@ -84,9 +85,10 @@ def display_item():
 
 # pagina de anuncio de troca 
 
-
-
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    context.load_cert_chain('localhost.pem', 'localhost-key.pem')
+    app.run(debug=True, host='0.0.0.0')
+
 
 

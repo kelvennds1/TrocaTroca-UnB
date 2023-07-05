@@ -1,5 +1,7 @@
 /* style.css */
-
+*:focus {
+  outline: none;
+}
 form {
     display: flex;
     flex-direction: column;

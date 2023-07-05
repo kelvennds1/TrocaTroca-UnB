@@ -79,10 +79,10 @@ items.forEach(function(item) {
 });
 
 
-// const hamburgerIcon = document.getElementById("hamburgerIcon");
-// const sidebar = document.querySelector(".sidebar");
+const hamburgerIcon = document.getElementById("hamburgerIcon");
+const sidebar = document.querySelector(".sidebar");
 
-// hamburgerIcon.addEventListener("click", () => {
-//   sidebar.classList.toggle("active");
-// });
+hamburgerIcon.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+});
 

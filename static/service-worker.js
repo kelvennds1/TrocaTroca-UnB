@@ -3,13 +3,9 @@ self.addEventListener('install', event => {
       caches.open('my-cache').then(cache => {
         return cache.addAll([
           '/',
-          '/styles/global.css',
-          '/styles/login.css',
-          '/styles/home.css',
-          '/styles/explorar.css',
-          '/styles/index.css',
-          '/styles/registrar.css',
-          '/img/UnB-logo.png'
+          '/styles/',
+          '/img/UnB-logo.png',
+          '/img/'
           
           // Adicione outros arquivos que você deseja armazenar em cache
         ]);
