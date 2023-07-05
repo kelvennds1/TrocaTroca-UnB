@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session , jsonify, Blueprint
+from flask import Flask, render_template, request, redirect, session , jsonify, Blueprint, url_for
 from sqlalchemy import create_engine, cast, select
 from sqlalchemy.orm import sessionmaker
 from trocatroca0_orm import *
@@ -47,9 +47,13 @@ def swap():
 # !TODO: integrate swap waiting status to swap.html
         answ_route, idswap = save_swap_data(idperson_this_party, iditem_give, idperson_other_party, iditem_receive, swap_type, this_donation_party_type) #  answ_route == 'swap_waiting_2nd_party' 'swap_success' or 'swap_fail'
         if idswap:
-            return redirect(str(answ_route) + '?idswap=' + str(idswap)) # for /swap_waiting_other_party
+            return redirect(url_for('swap.swap_waiting_other_party', idswap=idswap, user_id=idperson_this_party))
+
+            #return redirect(str(answ_route) + '?idswap=' + str(idswap)) # for /swap_waiting_other_party
+        elif answ_route == 'swap_success.html':
+            return redirect(url_for('itens.visualizar_itens', user_id=idperson_this_party))
         else:
-            return redirect(str(answ_route)) #
+            return redirect(str(answ_route)) # swap_success or swap_fail
     return render_template('swap.html', PLACEHOLDER_KEY_FOR_DONATION=PLACEHOLDER_KEY_FOR_DONATION)
 
 # receives None from donation case where 1 party gives no item
@@ -182,7 +186,8 @@ def check_swap_status():
 # !TODO: implement css
 @swap_bp.route('/swap_success')
 def swap_success():
-    return render_template('swap_success.html')
+    user_id = request.args.get('user_id')
+    return render_template('swap_success.html', user_id=user_id)
 
 @swap_bp.route('/swap_fail')
 def swap_fail():
@@ -191,7 +196,9 @@ def swap_fail():
 @swap_bp.route('/swap_waiting_other_party')
 def swap_waiting_other_party():
     session = Session()
+    user_id = request.args.get('user_id')
     idswap = request.args.get('idswap')
+    idperson_this_party = request.args.get('idperson_this_party')
     swap_table = session.query(Swap).filter_by(idswap=idswap).first()
     session.close()
-    return render_template('swap_status.html', idswap=idswap)
+    return render_template('swap_status.html', idswap=idswap, user_id=user_id)
