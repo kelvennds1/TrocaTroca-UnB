@@ -14,7 +14,7 @@ db_session = Session()
 sys.path.append("../routes")
 swap_bp = Blueprint('swap', __name__)
 
-PLACEHOLDER_KEY_FOR_DONATION = 2
+PLACEHOLDER_KEY_FOR_DONATION = 96
 
 @swap_bp.route('/swap', methods=['GET', 'POST'])
 def swap():
@@ -25,6 +25,15 @@ def swap():
         iditem_give = request.form['iditem_give']
         idperson_other_party = request.form['idperson_other_party']
         iditem_receive = request.form['iditem_receive']
+
+        if idperson_this_party != '':
+            idperson_this_party = int(idperson_this_party)
+        if iditem_give != '':
+            iditem_give = int(iditem_give)
+        if idperson_other_party != '':
+            idperson_other_party = int(idperson_other_party)
+        if iditem_receive != '':
+            iditem_receive = int(iditem_receive)
         swap_type = request.form['swap_type']
         this_donation_party_type = ''
         if (swap_type == 'doacao'):
@@ -59,6 +68,7 @@ def save_swap_data(idperson_this_party, iditem_give, idperson_other_party, idite
         if (swap_type == 'doacao'): 
             if this_donation_party_type == 'Doando':
                 if (item_give.person_idperson == idperson_this_party  ): # if item belongs to donator
+                    print('search swap as doando party')
                     iditem_receive = PLACEHOLDER_KEY_FOR_DONATION; # not strictly necessary (as swap status cur define by p2kGive) but keep here anw, to fully fill swap table
                     swap_table = session.query(Swap).filter(
                     Swap.p1Key == idperson_other_party,
@@ -68,9 +78,11 @@ def save_swap_data(idperson_this_party, iditem_give, idperson_other_party, idite
                     Swap.time_created > min_time
                     ).first()
                 else:
+                    print(item_give.person_idperson, idperson_this_party)
                     raise Exception("valor Item.person_id person se difere de Person.idperson")
             elif this_donation_party_type == 'Recebendo':
                 if ( item_receive.person_idperson == idperson_other_party  ): # if item belongs to donator
+                    print('search swap as recebendo party')
                     iditem_give = PLACEHOLDER_KEY_FOR_DONATION; # required for redirecting 1st party to swap_success in swap status
                     swap_table = session.query(Swap).filter(
                     Swap.p1Key == idperson_other_party,
@@ -80,6 +92,7 @@ def save_swap_data(idperson_this_party, iditem_give, idperson_other_party, idite
                     Swap.time_created > min_time
                     ).first()
                 else:
+                    print(item_receive.person_idperson, idperson_other_party)
                     raise Exception("valor Item.person_id person se difere de Person.idperson")
         # if exchange items belong to parties
         elif (swap_type == 'Troca') :
@@ -92,6 +105,7 @@ def save_swap_data(idperson_this_party, iditem_give, idperson_other_party, idite
                 Swap.time_created > min_time
                 ).first()
             else:
+                print(item_give.person_idperson, person_this_party.idperson )
                 raise Exception("valores Item.person_id person se diferem de Person.idperson")
             print(swap_table)
 
@@ -135,6 +149,7 @@ def save_swap_data(idperson_this_party, iditem_give, idperson_other_party, idite
 #----------------------------------------------------------------------------------------------
     # else creates new swap instance, this is 1st party to insert
         else:
+            print(idperson_this_party, iditem_give, iditem_receive, idperson_other_party, current_time)
             new_swap = Swap(p1Key=idperson_this_party, p1kGive=iditem_give, p1kReceive=iditem_receive, p2Key=idperson_other_party, time_created=current_time)
             session.add(new_swap)
             session.commit()
