@@ -4,8 +4,13 @@ self.addEventListener('install', event => {
         return cache.addAll([
           '/',
           '/styles/global.css',
-          '/styles/Login.css',
+          '/styles/login.css',
+          '/styles/home.css',
+          '/styles/explorar.css',
+          '/styles/index.css',
+          '/styles/registrar.css',
           '/img/UnB-logo.png'
+          
           // Adicione outros arquivos que você deseja armazenar em cache
         ]);
       })

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/swap.css">
+</head>
+<body>
+    <div wrapper>
+        <header>
+            <div class="back-button">
+                <!-- <div class="back-button-child"></div> -->
+                <img class="back-button-img" alt="" src="../static/img/back-button.svg" />
+                <!-- <a href="/login" class="back-link"></a> -->
+            </div>
+
+            <div class="tag-superior">
+              <div class="troca-troca">TrocaTroca</div>
+<<<<<<< HEAD
+              <img class="image-logo" src="/static/img/logo_trocatroca.svg" alt="logo">
+=======
+              <img class="image-logo" src="../static/img/logo-trocatroca.png" alt="logo">
+              {# <img class="image-logo" src="/TrocaTroca-UnB/static/img/logo-trocatroca.png" alt="logo"> #}
+>>>>>>> 0a130516345b87c9df2b2a211a9f4724c033219b
+            </div>
+        </header>
+
+        <div class="box-bordy">
+          <div class="register-text">Registrar transação</div>
+          <form method="POST" action="/swap">
+            <div class="input-container">
+<<<<<<< HEAD
+              <label for="iditem_receive">seu ID:</label>
+              <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
+              <label for="iditem_give">Digite o ID do item que você dará em troca:</label>
+              <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+              <label for="iditem_receive">Digite o nº do ID do receptor:</label>
+              <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">  
+              <label for="iditem_receive">Digite o ID do item desejado:</label>
+              <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
+              <button type="submit" class="button-submit">Submit</button>
+=======
+
+              <label for="swap_type">Qual o tipo de transação?</label>
+              <select id="swap_type" name="swap_type" >
+              {#  <option selected disabled hidden style='display: none' value=''>selecione</option> #}
+                <option value="Troca" >Troca</option>
+                <option value="doacao">Doação</option>
+              </select>
+          
+              <div id="doacao-section" style="display: none;">
+                <label for="donation_party_type">Você está doando ou recebendo?</label>
+                {# !TODO:  #}
+                <select id="donation_party_type" name="donation_party_type" >
+                  {# !TODO: select Doando e update idperson_other_party cm o js de baixo imediatamente no que user clica em Doação.
+                     Atualmente só é atualizado dps q user clica em Recebendo e Doação novamente  #}
+                  <option  value="Doando">Doando</option> 
+                  <option  value="Recebendo">Recebendo</option> 
+                  <option selected disabled hidden style='display: none' value=''>selecione</option>
+                </select>
+              </div>
+          
+                <label for="idperson_this_party">Seu ID:</label>
+                <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">
+
+                <label for="iditem_give">ID do item que você dará:</label>
+                <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+          
+                <label for="idperson_other_party">ID de user da outra parte da troca:</label>
+                <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">
+
+
+                <label for="iditem_receive">ID do item desejado:</label>
+                <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">
+          
+                <button type="submit" class="button-submit">Submit</button>
+>>>>>>> 0a130516345b87c9df2b2a211a9f4724c033219b
+            </div>
+          </form>
+        </div>
+       {# // deactivate input fields based on transaction type select #}
+       <script>
+        const swapTypeSelect = document.getElementById("swap_type");
+        const doacaoSection = document.getElementById("doacao-section");
+        const doacaoPartyTypeSelect = document.getElementById("donation_party_type");
+        const idItemGiveInput = document.getElementById("iditem_give");
+        const idItemReceiveInput = document.getElementById("iditem_receive");
+      
+        // Handle swap type change
+        swapTypeSelect.addEventListener("change", function() {
+          const selectedOption = swapTypeSelect.options[swapTypeSelect.selectedIndex].value;
+      
+          if (selectedOption === "doacao") {
+            doacaoSection.style.display = "block";
+          } else {
+            doacaoSection.style.display = "none";
+          }
+        });
+      
+        // Disable input fields for donation based on selected party type
+        doacaoPartyTypeSelect.addEventListener("change", function() {
+          const selectedOption = doacaoPartyTypeSelect.options[doacaoPartyTypeSelect.selectedIndex].value;
+          if (selectedOption === "Doando") {
+            idItemGiveInput.disabled = false;
+            idItemGiveInput.readOnly = false;
+            idItemGiveInput.value = "";
+      
+            idItemReceiveInput.readOnly = true;
+            idItemReceiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
+            // idItemReceiveInput.disabled = true;
+          } else if (selectedOption === "Recebendo"){
+            idItemReceiveInput.disabled = false;
+            idItemReceiveInput.readOnly = false;
+            idItemReceiveInput.value = "";
+      
+            idItemGiveInput.readOnly = true;
+            idItemGiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
+            // idItemGiveInput.disabled = true;
+          }
+        });
+      </script>
+      
+       {#  // redirects 1st party to success when 2nd party registers rtansaction #}
+        <script>
+          function checkSwapStatus() {
+            fetch('/swap_status')
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'success') {
+                  window.location.href = '/swap_success';
+                } else if (data.status === 'pending') {
+                  pass
+                } else {
+                window.location.href = '/swap_fail';
+                }
+              });
+          }
+          setInterval(checkSwapStatus, 5000000);
+        </script>
+    
+        <div class="waves-container">
+            <svg width="100vw" height="95" viewBox="0 0 414 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 45H17C35 45 69 45 104 50C138 54 173 62 207 60C242 58 276 45 311 39C345 33 380 33 397 33H414V95H397C380 95 345 95 311 95C276 95 242 95 207 95C173 95 138 95 104 95C69 95 35 95 17 95H0V45Z" fill="#0BAD59"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.585L17 16.585C35 20.585 69 29.585 104 35.585C138 41.585 173 45.585 207 37.585C242 29.585 276 8.585 311 2.585C345 -4.415 380 4.585 397 8.585L414 12.585V74.585H397C380 74.585 345 74.585 311 74.585C276 74.585 242 74.585 207 74.585C173 74.585 138 74.585 104 74.585C69 74.585 35 74.585 17 74.585H0V12.585Z" fill="#0BAD59" fill-opacity="0.75"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 21.3797L17.25 19.3122C34.5 17.2447 69 13.1097 103.5 19.3122C138 25.5148 172.5 42.0548 207 39.9873C241.5 37.9198 276 17.2447 310.5 15.1772C345 13.1097 379.5 29.6498 396.75 37.9198L414 46.1899V71H396.75C379.5 71 345 71 310.5 71C276 71 241.5 71 207 71C172.5 71 138 71 103.5 71C69 71 34.5 71 17.25 71H0V21.3797Z" fill="#0BAD59" fill-opacity="0.5"/>
+            </svg>
+        </div>
+    </div></body>
+</html>

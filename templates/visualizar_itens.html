@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="stylesheet" href="../static/styles/home.css" />
+  <link rel="stylesheet" href="../static/styles/sidebar.css" />
+</head>
+<body>
+  <div class="home">
+    <header>
+      <div class="top">
+        <img class="user-pic-icon" alt="" src="../static/img/User pic.svg" />
+        <div class="message">
+          <p class="ola-user">Olá, {{ session['username'] }}!</p>
+        </div>
+        <img class="hamburger-icon" alt="" src="../static/img/Hamburger.svg" id="hamburgerIcon"/>
+      </div>
+    </header>
+    <div class="main-page-content">
+
+      <div class="carousel-container">
+        <div class="carousel">
+          <!-- Itens do carrossel -->
+          {% for item in items %}
+          {% if item.item_type == 'Troca' %}
+          <div class="item">
+            {% if item.image_blob != none %}
+            <div class="imagem-wrapper ">
+              <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
+            </div>
+            {% else %}
+            <div class="imagem-wrapper ">
+              <img src="../static/img/Splash screen.png" class="imagem" alt="">
+            </div>
+            {% endif %}
+            <div class="item-desc">
+              <div class="name-year">
+                <div class="item-name">{{ item.name }}</div>
+                <div class="item-year">{{ item.year_acquired }}</div>
+              </div>
+              <span class="item-type">Troca</span>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="last-container"></div>
+      <div class="navigation">
+        <nav class="navbar">
+          <a href="#"><img class="vectors" src="../static/img/nav-bar/home.svg" alt=""></a>
+          <a href="/explorar"><img class="explorar" src="../static/img/nav-bar/explorar.svg" alt=""></a>
+          <div class="meio-nav"><a href="#"><img class="vectors" src="../static/img/nav-bar/inserir.svg" alt=""></a></div>
+          <a href="#"><img class="vectors" src="../static/img/nav-bar/curtidos.svg" alt=""></a>
+          <a href="#"><img class="vectors" src="../static/img/nav-bar/estudo.svg" alt=""></a>
+        </nav>
+      </div>
+      <div class="sidebar">
+        <a href="anuncios.html">Anúncios</a>
+        <a href="minha_conta.html">Minha Conta</a>
+        <a href="{{ url_for('swap.swap') }}">Registrar Troca</a>
+        <a href="#">Logout</a>
+        <a href="#">Feedback</a>
+      </div>
+    </div>
+    <script src="../static/js/home.js"></script>
+    <script src="../static/js/sidebar.js"></script>
+  </div>
+  </body>
+</html>

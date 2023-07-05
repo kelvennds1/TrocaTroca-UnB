@@ -1,28 +1,39 @@
-# Importar as classes relevantes
+# -*- coding: utf-8 -*-
 
+# ---------------------------------------- Importar as classes relevantes ------------------------------------------------------
 from flask import Flask, render_template, request, redirect, session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from register_route import registro_bp # Importe o blueprint de registro
-from login_route import login_bp
+from routes.register_route import registro_bp # Importe o blueprint de registro
+from routes.login_route import login_bp
+from routes.home_route import home_bp
+from routes.swap_route import swap_bp
+from routes.explorar_route import explorar_bp
+from routes.anuncio_route import anuncio_bp
 from trocatroca0_orm import *
-import base64
+#------------------------------------------------ Criar App -------------------------------------------------------------
+app = Flask(__name__, template_folder='templates')
 
-app = Flask(__name__)
-
+#-------------------------------------------- Importando Rotas ------------------------------------------------------------
 @app.before_request
 def activate_service_worker():
     # Definir as configurações para o Service Worker
     request.environ['wsgi.url_scheme'] = 'https'
     request.environ['HTTP_SERVICE_WORKER_ALLOWED'] = '/'
 
-app.register_blueprint(registro_bp)  # Registrar o blueprint de registro na aplicação Flask
-app.register_blueprint(login_bp)
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # Rota principal
     return render_template('index.html')
+
+app.register_blueprint(registro_bp)  # Registrar o blueprint de registro na aplicação Flask
+app.register_blueprint(login_bp)
+app.register_blueprint(home_bp)
+app.register_blueprint(swap_bp)
+app.register_blueprint(explorar_bp)
+app.register_blueprint(anuncio_bp)
+# app.register_blueprint(explorar_bp)
+
 
 app.secret_key = '342342354525351sadad1eqd'  # Chave secreta para gerar sessões seguras
 
@@ -31,49 +42,51 @@ engine = create_engine('mysql+pymysql://admin:troca2023@trocatroca-db.co7hqdo9x7
 Session = sessionmaker(bind=engine)
 
 
+@app.route('/explorar', methods=['GET', 'POST'])
+@app.route('/explorar/<tipo>', methods=['GET', 'POST'])
+def explorar(tipo=None):
+    sessio = Session()
+    if tipo:
+        # Filtrar os itens por tipo (troca ou doação)
+        items = sessio.query(Item).filter_by(item_type=tipo).all()
+    else:
+        # Carregar todos os itens
+        items = sessio.query(Item).all()
+    return render_template('explorar.html', items=items)
+
+
+
 @app.route('/logout')
 def logout():
     # Remova as informações do usuário da sessão
     session.pop('user_id', None)
     session.pop('username', None)
-    
     # Redirecione para a página de login
     return redirect('/login')
 
-@app.route('/home')
-def home():
+@app.route('/inserir')
+def inserir():
+    return render_template('inserir_anuncio.html')
     
-    # Verifique se o usuário está logado
-    if 'user_id' in session:
-        sessio = Session()
-        items = sessio.query(Item).all()
-        return render_template('home.html', items=items)
-
-    else:
-        # Se o usuário não estiver logado, redirecione para a página de login
-        return redirect('/login')
+# testa display de item, imagem
+@app.route('/itemunicoid2')
+def display_item():
+    iditem = 2
+    db = Session()
+    item = db.query(Item).filter_by(iditem=iditem).first()
+    db.close()
+    try:
+        image_decoded = item.image_blob.decode('utf-8')
+    except:
+        image_decoded ='"img 🫥"'
+    return render_template('item.html', item=item, image_base64=image_decoded)
     
 
-# @app.route('/items')
-# def display_items():
-#     db = Session()
-#     items = db.query(Item).all()
-#     db.close()  
-#     return render_template('items.html', items=items)
-
-# @app.route('/image/<item_id>')
-# def display_image(item_id):
-#     db_session = Session()  # Create a new SQLAlchemy session
-#     item = db_session.query(Item).get(item_id)
-#     if item and item.image_blob:
-#         image_base64 = base64.b64encode(item.image_blob).decode('utf-8')
-#         return f'<img src="data:image/jpeg;base64,{image_base64}" alt="Item Image">'
-#     else:
-#         return 'Image not found'
-#     db_session.close()  
+# pagina de anuncio de troca 
 
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
+
 
