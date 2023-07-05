@@ -13,6 +13,7 @@ from routes.explorar_route import explorar_bp
 from routes.anuncio_route import anuncio_bp
 from trocatroca0_orm import *
 import ssl
+import base64
 #------------------------------------------------ Criar App -------------------------------------------------------------
 app = Flask(__name__, template_folder='templates')
 
@@ -66,15 +67,16 @@ def inserir():
     return render_template('inserir_anuncio.html')
     
 # testa display de item, imagem
-@app.route('/itemunicoid2')
-def display_item():
-    iditem = 2
+@app.route('/itemunicoid<int:iditem>')
+def display_item(iditem):
     db = Session()
     item = db.query(Item).filter_by(iditem=iditem).first()
     db.close()
     try:
         image_decoded = item.image_blob.decode('utf-8')
-    except:
+        #image_decoded = base64.b64decode(image_decoded)
+    except Exception as e:
+        print(e)
         image_decoded ='"img 🫥"'
     return render_template('item.html', item=item, image_base64=image_decoded)
     
