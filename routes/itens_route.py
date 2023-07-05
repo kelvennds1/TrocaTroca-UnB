@@ -17,10 +17,12 @@ itens_bp = Blueprint('itens', __name__)
 @itens_bp.route("/itens")
 def visualizar_itens():
     session = Session()
-    # user_id = session['user_id']
+    # user_id = s79ession['user_id']
     user_id = 9
     
     #  Execute a query para obter todos os itens do usuário logado, ordenados pela data mais recente
+    print(session.query(Item).filter_by(person_idperson=user_id).count())
     itens = session.query(Item).filter_by(person_idperson=user_id).order_by(Item.time_created.desc()).all()
+    print(itens)
 
-    return render_template("visualizar_itens.html", itens=itens)
+    return render_template("visualizar_itens.html", items=itens)
