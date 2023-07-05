@@ -26,6 +26,12 @@ def swap():
         idperson_other_party = request.form['idperson_other_party']
         iditem_receive = request.form['iditem_receive']
 
+        # makes assign in if (swap was already initiated by 1st party ) become reduntant so mb delete those after testing
+        if iditem_give == 'Não se aplica':
+            iditem_give = PLACEHOLDER_KEY_FOR_DONATION
+        if iditem_receive == 'Não se aplica':
+            iditem_receive = PLACEHOLDER_KEY_FOR_DONATION
+
         if idperson_this_party != '':
             idperson_this_party = int(idperson_this_party)
         if iditem_give != '':
