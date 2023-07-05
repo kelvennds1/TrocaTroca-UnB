@@ -3,6 +3,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/styles/swap.css">
+  <link rel="stylesheet" href="/static/bootstrap-5.0.2-dist/css/bootstrap.css">
+  <script src="/static/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -13,20 +15,28 @@
       </div>
       <p class="troca-troca">TrocaTroca</p>
     </header>
-
     <div class="swap-container">
       <h3 class="tittle">Registrar transação</h3>
       <form method="POST" action="/swap">
         <div class="input-container">
-          <label for="iditem_receive">seu ID:</label>
-          <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
-          <label for="iditem_give">Digite o ID do item que você dará em troca:</label>
-          <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
-          <label for="iditem_receive">Digite o nº do ID do receptor:</label>
-          <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">  
-          <label for="iditem_receive">Digite o ID do item desejado:</label>
-          <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
-          <button type="submit" class="button-submit">Submit</button>
+       
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="idperson_this_party" name="idperson_this_party" placeholder="xxxxxxxx">
+            <label for="idperson_this_party">Seu ID:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="iditem_give" name="iditem_give" placeholder="xxxxxxxx">
+            <label for="iditem_give">ID do item oferecido:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="idperson_other_party" name="idperson_other_party" placeholder="xxxxxxxx">
+            <label for="iditem_receive">Nº do ID do receptor:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="iditem_receive" name="iditem_receive" placeholder="xxxxxxxx">
+            <label for="iditem_receive">Nº ID do item desejado:</label>
+          </div> 
+          <button type="submit" class="button-submit">Enviar</button>
         </div>
       </form>
     </div>
