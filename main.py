@@ -11,6 +11,7 @@ from routes.home_route import home_bp
 from routes.swap_route import swap_bp
 from routes.explorar_route import explorar_bp
 from routes.anuncio_route import anuncio_bp
+from routes.itens_route import itens_bp
 from trocatroca0_orm import *
 import ssl
 import base64
@@ -36,6 +37,7 @@ app.register_blueprint(home_bp)
 app.register_blueprint(swap_bp)
 app.register_blueprint(explorar_bp)
 app.register_blueprint(anuncio_bp)
+app.register_blueprint(itens_bp)
 # app.register_blueprint(explorar_bp)
 
 
