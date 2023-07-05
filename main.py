@@ -11,6 +11,7 @@ from routes.swap_route import swap_bp
 from routes.explorar_route import explorar_bp
 from routes.anuncio_route import anuncio_bp
 from trocatroca0_orm import *
+import base64
 #------------------------------------------------ Criar App -------------------------------------------------------------
 app = Flask(__name__, template_folder='templates')
 
@@ -75,8 +76,23 @@ def display_item(iditem):
     item = db.query(Item).filter_by(iditem=iditem).first()
     db.close()
     try:
+       # image_decoded = base64.b64decode(item.image_decoded)
         image_decoded = item.image_blob.decode('utf-8')
-    except:
+        #image_decoded = base64.b64decode(image_decoded)
+        # image_decoded = image_decoded.decode('utf-8')
+       # image_decoded = base64.b64decode(image_decoded)
+        #image_decoded = base64.b64decode(item.image_decoded)
+        # image_decoded = item.image_blob.decode('utf-8')
+        print(image_decoded)
+        
+        print(image_decoded)
+        #image_decoded = base64.b64decode(image_decoded)
+        
+        #image_decoded = item.image_blob.decode('utf-8')
+      #  print(image_decoded)
+
+    except Exception as e:
+        print(e)
         image_decoded ='"img 🫥"'
     return render_template('item.html', item=item, image_base64=image_decoded)
     

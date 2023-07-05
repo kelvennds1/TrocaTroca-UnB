@@ -56,44 +56,44 @@ def save_swap_data(idperson_this_party, iditem_give, idperson_other_party, idite
         sleep(5) # wait 5 seconds in case 1st party began swap and insert request is being handled in db 
 
         # if donation item belongs to party and only 1 party gives item
-        if (swap_type == 'doacao'):  #!TODO: test when donation w item is 2nd party to insert vice versa. 2 cases.
+        if (swap_type == 'doacao'): 
             if this_donation_party_type == 'Doando':
-                # and item_receive == None
-                if (item_give.person == person_this_party  ): # if item belongs to donator
+                if (item_give.person_idperson == idperson_this_party  ): # if item belongs to donator
                     iditem_receive = PLACEHOLDER_KEY_FOR_DONATION; # not strictly necessary (as swap status cur define by p2kGive) but keep here anw, to fully fill swap table
                     swap_table = session.query(Swap).filter(
                     Swap.p1Key == idperson_other_party,
                     Swap.p1kGive == PLACEHOLDER_KEY_FOR_DONATION,
                     Swap.p1kReceive == iditem_give,
                     Swap.p2Key == idperson_this_party,
-                    Swap.p2kGive.is_(None),
-                    Swap.p2kReceive.is_(None),
                     Swap.time_created > min_time
                     ).first()
+                else:
+                    raise Exception("valor Item.person_id person se difere de Person.idperson")
             elif this_donation_party_type == 'Recebendo':
-                if ( item_receive.person == person_other_party  ): # if item belongs to donator
+                if ( item_receive.person_idperson == idperson_other_party  ): # if item belongs to donator
                     iditem_give = PLACEHOLDER_KEY_FOR_DONATION; # required for redirecting 1st party to swap_success in swap status
                     swap_table = session.query(Swap).filter(
                     Swap.p1Key == idperson_other_party,
                     Swap.p1kGive == iditem_receive,
                     Swap.p1kReceive == PLACEHOLDER_KEY_FOR_DONATION,
                     Swap.p2Key == idperson_this_party,
-                    Swap.p2kGive.is_(None),
-                    Swap.p2kReceive.is_(None),
                     Swap.time_created > min_time
                     ).first()
+                else:
+                    raise Exception("valor Item.person_id person se difere de Person.idperson")
         # if exchange items belong to parties
-        elif (swap_type == 'Troca') and (item_give.person == person_this_party and item_receive.person == person_other_party):
-            min_time = datetime.now(pytz.timezone('America/Sao_Paulo')) - timedelta(minutes=5)
-            swap_table = session.query(Swap).filter(
-            Swap.p1Key == idperson_other_party,
-            Swap.p1kGive == iditem_receive,
-            Swap.p1kReceive == iditem_give,
-            Swap.p2Key == idperson_this_party,
-            Swap.p2kGive.is_(None),
-            Swap.p2kReceive.is_(None),
-            Swap.time_created > min_time
-            ).first()
+        elif (swap_type == 'Troca') :
+            if (item_give.person_idperson == person_this_party.idperson and item_receive.person_idperson == person_other_party.idperson): # if items belong to parties
+                swap_table = session.query(Swap).filter(
+                Swap.p1Key == idperson_other_party,
+                Swap.p1kGive == iditem_receive,
+                Swap.p1kReceive == iditem_give,
+                Swap.p2Key == idperson_this_party,
+                Swap.time_created > min_time
+                ).first()
+            else:
+                raise Exception("valores Item.person_id person se diferem de Person.idperson")
+            print(swap_table)
 
         # if 1st party began swap in less than expiration_time
         if swap_table is not None:
