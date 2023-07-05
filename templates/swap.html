@@ -20,7 +20,28 @@
       <h3 class="tittle">Registrar transação</h3>
       <form method="POST" action="/swap">
         <div class="input-container">
-       
+
+          <div class="form-floating mb-3">
+          <label for="swap_type">Qual o tipo de transação?</label>
+          <select id="swap_type" name="swap_type" >
+          {#  <option selected disabled hidden style='display: none' value=''>selecione</option> #}
+            <option value="Troca" >Troca</option>
+            <option value="doacao">Doação</option>
+          </select>
+        </div>
+
+        <div id="doacao-section" style="display: none;">
+          <label for="donation_party_type">Você está doando ou recebendo?</label>
+          {# !TODO:  #}
+          <select id="donation_party_type" name="donation_party_type" >
+            {# !TODO: select Doando e update idperson_other_party cm o js de baixo imediatamente no que user clica em Doação.
+               Atualmente só é atualizado dps q user clica em Recebendo e Doação novamente  #}
+            <option  value="Doando">Doando</option> 
+            <option  value="Recebendo">Recebendo</option> 
+            <option selected disabled hidden style='display: none' value=''>selecione</option>
+          </select>
+        </div>
+    
           <div class="form-floating mb-3">
             <input class="form-control" type="text" id="idperson_this_party" name="idperson_this_party" placeholder="xxxxxxxx">
             <label for="idperson_this_party">Seu ID:</label>
