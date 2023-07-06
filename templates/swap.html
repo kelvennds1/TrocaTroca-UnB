@@ -8,6 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
   <div class="wrapper">
     <header>
       <div class="back-button">
@@ -59,6 +60,37 @@
             <label for="iditem_receive">Nº ID de item que você quer receber:</label>
           </div> 
           <button type="submit" class="button-submit">Enviar</button>
+=======
+    <div wrapper>
+        <header>
+            <div class="back-button">
+                <!-- <div class="back-button-child"></div> -->
+                <img class="back-button-img" alt="" src="../static/img/back-button.svg" />
+                <!-- <a href="/login" class="back-link"></a> -->
+            </div>
+
+            <div class="tag-superior">
+              <div class="troca-troca">TrocaTroca</div>
+              <img class="image-logo" src="/static/img/logo_trocatroca.svg" alt="logo">
+            </div>
+        </header>
+
+        <div class="box-bordy">
+          <div class="register-text">Registrar transação</div>
+          <form method="POST" action="/swap">
+            <div class="input-container">
+              <label for="iditem_receive">seu ID:</label>
+              <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
+              <label for="iditem_give">Digite o ID do item que você dará em troca:</label>
+              <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+              <label for="iditem_receive">Digite o nº do ID do receptor:</label>
+              <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">  
+              <label for="iditem_receive">Digite o ID do item desejado:</label>
+              <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
+              <button type="submit" class="button-submit">Submit</button>
+            </div>
+          </form>
+>>>>>>> 3a9b673e7be078f3c790177e03ed88979d0bbbbd
         </div>
       </form>
     </div>
