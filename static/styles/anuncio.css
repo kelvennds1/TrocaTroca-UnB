@@ -73,6 +73,9 @@ header{
   font-weight: 600;
   font-size: 28px;
 }
+.item-tittle span{
+  font-size: 16px;
+}
 .description{
   overflow-y: scroll;
   height: 135px;
