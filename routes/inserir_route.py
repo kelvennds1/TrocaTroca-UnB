@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from trocatroca0_orm import Item, Category  # Importe as classes relevantes
+import base64
+
 
 
 inserir_bp = Blueprint('inserir', __name__)
@@ -16,7 +18,7 @@ anos = sorted(anos,reverse=True)
 @inserir_bp.route('/inserir', methods=['GET', 'POST'])
 def inserir():
     if 'user_id' in session:
-        categorias = session_bd.query(Category).all()
+        categorias = session_bd.query(Category).filter(Category.name != "DONATION_PLACEHOLDER").all()
         if request.method == 'POST':
             user = session['user_id']  
             title = request.form['title']
@@ -37,9 +39,13 @@ def inserir():
 
             # Acessar os atributos do arquivo
            
+            img_64 = base64.b64encode(file_data)
+            #.decode('utf-8')
+            print(img_64)
 
             # Salvar o conteúdo binário da imagem no atributo image_blob do objeto Item
-    
+            new_item.image_blob = file_data
+
             session_bd.add(new_item)
             session_bd.commit()
         return render_template('inserir_anuncio.html', anos=anos, categorias = categorias)

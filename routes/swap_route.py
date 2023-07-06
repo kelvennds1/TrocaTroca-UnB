@@ -14,7 +14,7 @@ db_session = Session()
 sys.path.append("../routes")
 swap_bp = Blueprint('swap', __name__)
 
-PLACEHOLDER_KEY_FOR_DONATION = 2
+PLACEHOLDER_KEY_FOR_DONATION = 96
 
 @swap_bp.route('/swap', methods=['GET', 'POST'])
 def swap():
@@ -22,9 +22,17 @@ def swap():
     #    return redirect('/login')
     if request.method == 'POST':
         idperson_this_party = request.form['idperson_this_party']
+        if idperson_this_party  != '':
+            idperson_this_party = int(idperson_this_party )
         iditem_give = request.form['iditem_give']
+        if iditem_give  != '':
+            iditem_give = int(iditem_give )
         idperson_other_party = request.form['idperson_other_party']
+        if idperson_other_party  != '':
+            idperson_other_party = int(idperson_other_party )
         iditem_receive = request.form['iditem_receive']
+        if iditem_receive  != '':
+            iditem_receive = int(iditem_receive )
         swap_type = request.form['swap_type']
         this_donation_party_type = ''
         if (swap_type == 'doacao'):

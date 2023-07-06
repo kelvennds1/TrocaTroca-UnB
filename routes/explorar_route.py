@@ -19,9 +19,9 @@ def explorar(tipo=None):
     pessoas = sessio.query(Person).all()
     if tipo:
         # Filtrar os itens por tipo (troca ou doação)
-        items = sessio.query(Item).filter_by(item_type=tipo).all()
+        items = sessio.query(Item).filter_by(item_type=tipo, ).filter(Item.name != "DONATION_PLACEHOLDER").all()
     else:
         # Carregar todos os itens
-        items = sessio.query(Item).all()
+        items = sessio.query(Item).filter(Item.name != "DONATION_PLACEHOLDER").all()
     return render_template('explorar.html', items=items,pessoas=pessoas)
 
