@@ -18,7 +18,7 @@ def home():
     # Verifique se o usuário está logado
     if 'user_id' in session and not None:
         sessio = Session()
-        items = sessio.query(Item).all()
+        items = sessio.query(Item).filter(Item.name != "DONATION_PLACEHOLDER").all()
         return render_template('home.html', items=items)
 
     else:

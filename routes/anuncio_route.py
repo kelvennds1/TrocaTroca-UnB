@@ -16,8 +16,8 @@ sessio = Session()
 def anuncio(item_id):
     idanuncio = int(item_id) # !TODO: receive this as parameter
     db = Session()
-    item = db.query(Item).filter_by(iditem = idanuncio ).first()
-    all_items = db.query(Item).all()
+    item = db.query(Item).filter_by(iditem = idanuncio ).filter(Item.name != "DONATION_PLACEHOLDER").first()
+    all_items = db.query(Item).filter(Item.name != "DONATION_PLACEHOLDER").all()
 
     return render_template('anuncio.html', item=item, items=all_items)
 

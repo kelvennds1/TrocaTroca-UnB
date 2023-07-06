@@ -18,7 +18,7 @@ anos = sorted(anos,reverse=True)
 @inserir_bp.route('/inserir', methods=['GET', 'POST'])
 def inserir():
     if 'user_id' in session:
-        categorias = session_bd.query(Category).all()
+        categorias = session_bd.query(Category).filter(Category.name != "DONATION_PLACEHOLDER").all()
         if request.method == 'POST':
             user = session['user_id']  
             title = request.form['title']
