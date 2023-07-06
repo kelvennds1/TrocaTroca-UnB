@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from trocatroca0_orm import Item, Category  # Importe as classes relevantes
+import base64
+
 
 
 inserir_bp = Blueprint('inserir', __name__)
@@ -39,6 +41,8 @@ def inserir():
             filename = file.filename
             file_type = file.content_type
             file_data = file.read()
+            img_64 = base64.b64encode(file_data) 
+            img_64 = img_64.decode('utf-8')
 
             # Salvar o conteúdo binário da imagem no atributo image_blob do objeto Item
             new_item.image_blob = file_data
