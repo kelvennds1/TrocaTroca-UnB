@@ -20,10 +20,7 @@ body {
     background-color: #F5F5F5;
     -webkit-tap-highlight-color: transparent;
     -moz-tap-highlight-color: transparent;
-    -ms-tap-highlight-color: transparent;
-      
-      
-    
+    -ms-tap-highlight-color: transparent;    
 }
 .home {
     
@@ -277,6 +274,15 @@ header{
   text-decoration: none;
   transition: background-color 0.3s ease-in-out;
 }
+.sidebar p {
+    display: block;
+    padding: 16px 20px;
+    color: #333;
+    font-weight: bold;
+
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+  }
 
 .sidebar a:hover {
   background-color: #e1e1e1;

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
+body {
+    overflow-y: scroll;
+    margin-top: 64px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F5F5;
+    font-family: 'Fira Sans', sans-serif;
+}
+.wrapper {
+    max-width: 800px;
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: inherit;
+    padding: 0px 35px;
+}
+.troca-troca{
+  font: inherit;
+  font-weight: bolder;
+  font-size: 32px;
+  color: #3C3C3C;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input,
+  textarea,
+  select {
+    margin-bottom: 10px;
+  }
+  

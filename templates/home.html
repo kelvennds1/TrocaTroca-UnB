@@ -105,6 +105,7 @@
       <div class="last-container"></div>
       
       <div class="sidebar">
+        <p>Seu User ID: {{ session["user_id"] }}</p>
         <a href="anuncios.html">Anúncios</a>
         <a href="minha_conta.html">Minha Conta</a>
         <a href="{{ url_for('swap.swap') }}">Registrar Troca</a>
