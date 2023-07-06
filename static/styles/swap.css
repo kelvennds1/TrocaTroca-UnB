@@ -38,6 +38,19 @@ header{
   justify-content: space-between;
   margin-bottom: 60px;
 }
+.tag-superior {
+  width: 60%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  margin: 1em 0em 0em 0em;
+  
+}
+.image-logo{
+  width: 2.5em;
+  height: 2.5em;
+  
+}
 .troca-troca{
   font-style: normal;
   font-weight: 800;
@@ -45,6 +58,8 @@ header{
   font-family: 'Dosis';
   font-feature-settings: 'kern' off;
   color: #3C3C3C;
+  margin: 0.6em 0.2em 0em 0em;
+  
 }
 .swap-container{
   display: flex;
@@ -147,17 +162,17 @@ header{
   /* Pagina swag_fail */
 
   .texto_centro{
-      margin: 5em 1.4em 5em 1.4em;
-      font-size: 20px;
-      font-weight: 500;
-      text-align: justify;
+    margin: 5em 1.4em 5em 1.4em;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: justify;
   }
 
   .texto_status {
-    margin: 5em 1em 1em 1em;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: justify;
+  margin: 5em 1em 1em 1em;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: justify;
   }
 
 #countdown{
