@@ -14,7 +14,7 @@ db_session = Session()
 sys.path.append("../routes")
 swap_bp = Blueprint('swap', __name__)
 
-PLACEHOLDER_KEY_FOR_DONATION = 2
+PLACEHOLDER_KEY_FOR_DONATION = 96
 
 @swap_bp.route('/swap', methods=['GET', 'POST'])
 def swap():

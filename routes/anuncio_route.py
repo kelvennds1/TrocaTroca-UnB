@@ -11,9 +11,10 @@ engine = create_engine('mysql+pymysql://admin:troca2023@trocatroca-db.co7hqdo9x7
 Session = sessionmaker(bind=engine)
 sessio = Session()
 
-
+# Nota: me parece que isso foi inutilizado e esta quebrado
 @anuncio_bp.route('/anuncio/<item_id>', methods=['GET', 'POST'])
-def anuncio(item_id):
+def anuncio():
+    item_id = request.args.get('item_id')
     idanuncio = int(item_id) # !TODO: receive this as parameter
     db = Session()
     item = db.query(Item).filter_by(iditem = idanuncio ).filter(Item.name != "DONATION_PLACEHOLDER").first()
