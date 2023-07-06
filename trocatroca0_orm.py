@@ -39,39 +39,6 @@ class Item(Base):
     category = relationship('Category', foreign_keys=[category_idcategory], lazy='joined')
     person = relationship('Person', foreign_keys=[person_idperson], lazy='joined')
 
-class Person_adv_exch_item(Base):
-    __tablename__ = 'person_adv_exch_item'
-    idpersonAdvExchItem = Column(Integer, primary_key=True)
-    name = Column(String(75) )
-    desc = Column(String(1000) )
-    delivers = Column(String(45) )
-    reason = Column(String(450) )
-    listed = Column(String(15) )
-    market_price = Column(String(45) )
-    time_created = Column(DATETIME, server_default="CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo')")
-    person_idperson = Column(Integer, ForeignKey('person.idperson'), primary_key=True)
-    item_iditem = Column(Integer, ForeignKey('item.iditem'), primary_key=True)
-    category_idcategory = Column(Integer, ForeignKey('category.idcategory'), primary_key=True)
-    person = relationship('Person', foreign_keys=[person_idperson], lazy='joined')
-    item = relationship('Item', foreign_keys=[item_iditem], lazy='joined')
-    category = relationship('Category', foreign_keys=[category_idcategory], lazy='joined')
-
-class Person_adv_donate_item(Base):
-    __tablename__ = 'person_adv_donate_item'
-    idpersonAdvDonateItem = Column(Integer, primary_key=True)
-    name = Column(String(75) )
-    desc = Column(String(1000) )
-    delivers = Column(String(45) )
-    reason = Column(String(450) )
-    listed = Column(String(15) )
-    time_created = Column(DATETIME, server_default="CONVERT_TZ(NOW(),'UTC','America/Sao_Paulo')")
-    person_idperson = Column(Integer, ForeignKey('person.idperson'), primary_key=True)
-    item_iditem = Column(Integer, ForeignKey('item.iditem'), primary_key=True)
-    category_idcategory = Column(Integer, ForeignKey('category.idcategory'), primary_key=True)
-    person = relationship('Person', foreign_keys=[person_idperson], lazy='joined')
-    item = relationship('Item', foreign_keys=[item_iditem], lazy='joined')
-    category = relationship('Category', foreign_keys=[category_idcategory], lazy='joined')
-
 
 class Swap(Base):
     __tablename__ = 'swap'
