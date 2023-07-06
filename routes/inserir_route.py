@@ -32,16 +32,16 @@ def inserir():
             
             new_item = Item(person_idperson = user, name = title, brand_species = brand_species, year_acquired = year, desc = description, condition = condition, category_idcategory = category)
     
-            if 'photos' in request.files:
-                file = request.files['photos']
+            #if 'photos' in request.files:
+            file = request.files['photos']
 
-                # Acessar os atributos do arquivo
-                filename = file.filename
-                file_type = file.content_type
-                file_data = file.read()
+            # Acessar os atributos do arquivo
+            filename = file.filename
+            file_type = file.content_type
+            file_data = file.read()
 
             # Salvar o conteúdo binário da imagem no atributo image_blob do objeto Item
-                new_item.image_blob = file_data
+            new_item.image_blob = file_data
 
             session_bd.add(new_item)
             session_bd.commit()

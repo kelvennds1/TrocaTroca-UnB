@@ -5,6 +5,8 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="../static/styles/inserir_anuncio.css" />
     <script src="../static/js/inserir.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap-5.0.2-dist/css/bootstrap.css">
+    <script src="/static/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
   </head>
 <body>
   <div class="wrapper">
@@ -15,7 +17,8 @@
     <p class="troca-troca">TrocaTroca</p>
   </header>
   <h1>O que você está anunciando?</h1>
-  <form method="POST" action="/inserir">
+  <form method="POST" action="/inserir" enctype="multipart/form-data">
+    
     <label for="title">Título:</label>
     <input type="text" id="title" name="title" required>
     
