@@ -117,14 +117,13 @@ header{
 }
 .waves-container {
   padding: 0;
-  bottom: -10px;
+  top: 90%;
   position: fixed;
   align-items: center;
+  height: 100px;
   background: url('waves.svg') center bottom no-repeat;
-  @media (min-width:414px){
-    bottom: -200px;
-  }
 }
+
 
 /* registrar css ends */
 
