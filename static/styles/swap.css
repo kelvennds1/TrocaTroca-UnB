@@ -38,7 +38,6 @@ header{
   justify-content: space-between;
   margin-bottom: 60px;
 }
-
 .tag-superior {
   width: 60%;
   display: flex;
@@ -116,14 +115,13 @@ header{
 }
 .waves-container {
   padding: 0;
-  bottom: -10px;
+  top: 90%;
   position: fixed;
   align-items: center;
+  height: 100px;
   background: url('waves.svg') center bottom no-repeat;
-  @media (min-width:414px){
-    bottom: -200px;
-  }
 }
+
 
 /* registrar css ends */
 
@@ -161,17 +159,17 @@ header{
   /* Pagina swag_fail */
 
   .texto_centro{
-      margin: 5em 1.4em 5em 1.4em;
-      font-size: 20px;
-      font-weight: 500;
-      text-align: justify;
+    margin: 5em 1.4em 5em 1.4em;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: justify;
   }
 
   .texto_status {
-    margin: 5em 1em 1em 1em;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: justify;
+  margin: 5em 1em 1em 1em;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: justify;
   }
 
 #countdown{
