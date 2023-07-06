@@ -7,6 +7,7 @@
     <script src="../static/js/inserir.js"></script>
     <link rel="stylesheet" href="/static/bootstrap-5.0.2-dist/css/bootstrap.css">
     <script src="/static/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../static/styles/inserir_anuncio.css" />
   </head>
 <body>
   <div class="wrapper">
@@ -16,51 +17,56 @@
     </div>
     <p class="troca-troca">TrocaTroca</p>
   </header>
-  <h1>O que você está anunciando?</h1>
+  <p class="title-page">O que você está anunciando?</p>
   <form method="POST" action="/inserir" enctype="multipart/form-data">
-    
-    <label for="title">Título:</label>
-    <input type="text" id="title" name="title" required>
-    
-    <label for="description">Descrição:</label>
-    <textarea id="description" name="description" required></textarea>
-    
-    <label for="category">Categoria:</label>
-    <select id="category" name="category" onchange="checkCategory()" required>
-      <option value="">Selecione uma categoria</option>
-      {% for categoria in categorias %}
-      <option value="{{ categoria.idcategory }}">{{ categoria.name }}</option>
-      {% endfor %}
-      <!-- Adicione mais opções de categorias, se necessário -->
-    </select>
-    
-    <label for="race" id="race-label" style="display: none;">Raça:</label>
-    <input type="text" id="race" name="race" style="display: none;">
-    
-    <label for="brand" id="brand-label">Marca:</label>
-    <input type="text" id="brand" name="brand">
-    
-    <label for="condition">Condição:</label>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="tittle" placeholder="Titulo" required>
+      <label for="title">Título:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <textarea class="form-control" id="description" placeholder="Descrição" required></textarea>
+      <label for="description">Descrição:</label>
+    </div>
+    <div class="form-floating">
+      <select class="form-select" id="category" name="category" aria-label="Floating label select example" onchange="checkCategory()" required>
+        <option selected>Selecione uma categoria</option>
+        {% for categoria in categorias %}
+        <option value="{{ categoria.idcategory }}">{{ categoria.name }}</option>
+        {% endfor %}
+      </select>
+      <label for="category">Categoria:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="race" placeholder="Raça" required>
+      <label for="race">Raça:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="brand" placeholder="Marca" required>
+      <label for="brand">Marca:</label>
+    </div>
+    <label class="condition" for="condition">Condição:</label>
     <div class="condition-options">
       <input type="radio" id="new" name="condition" value="new" required>
       <label for="new">Novo</label>
       <input type="radio" id="used" name="condition" value="used" required>
       <label for="used">Usado</label>
     </div>
-    
-    <label for="year">Ano Adquirido:</label>
-    <select id="year" name="year">
-      <option value="">Selecione o ano de aquisição</option>
-      {% for ano in anos %}
-      <option value="{{ ano }}">{{ ano }}</option>
-      {% endfor %}
-      <!-- Adicione mais opções de anos, se necessário -->
-    </select>
-    
+    <div class="form-floating">
+      <select class="form-select" id="category" name="category" aria-label="Floating label select example" onchange="checkCategory()" required>
+        <option selected>Selecione o ano de aquisição</option>
+        {% for ano in anos %}
+        <option value="{{ ano }}">{{ ano }}</option>
+        {% endfor %}
+      </select>
+      <label for="category">Ano Adquirido:</label>
+    </div>
     <label for="photos">Fotos:</label>
-    <input type="file" id="photos" name="photos" accept="image/*" capture="camera" multiple>
+    <div class="input-group mb-3">
+      <input type="file" class="form-control" id="inputGroupFile02" name="photos" accept="image/*" capture="camera">
+    </div>
     
-    <button type="submit">Publicar Anúncio</button>
+    
+    <button type="submit" class="register-btn" id="register-btn">Publicar Anúncio</button>
   </form>
 </div>
 </body>
