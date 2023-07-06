@@ -8,7 +8,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
   <div class="wrapper">
     <header>
       <div class="back-button">
@@ -20,22 +19,44 @@
       <h3 class="tittle">Registrar transação</h3>
       <form method="POST" action="/swap">
         <div class="input-container">
-       
+
+          <div class="form-floating mb-3">
+          <label for="swap_type">Qual o tipo de transação?</label> <br><br>
+          <select id="swap_type" name="swap_type" >
+          {#  <option selected disabled hidden style='display: none' value=''>selecione</option> #}
+            <option value="Troca" >Troca</option>
+            <option value="doacao">Doação</option>
+          </select>
+        </div>
+
+        <div id="doacao-section" style="display: none;">
+          <label for="donation_party_type">Você está doando ou recebendo?</label>
+          {# !TODO:  #}
+          <select id="donation_party_type" name="donation_party_type" >
+            {# !TODO: select Doando e update idperson_other_party cm o js de baixo imediatamente no que user clica em Doação.
+               Atualmente só é atualizado dps q user clica em Recebendo e Doação novamente  #}
+            <option  value="Doando">Doando</option> 
+            <option  value="Recebendo">Recebendo</option> 
+            <option selected disabled hidden style='display: none' value=''>selecione</option>
+          </select>
+        </div>
+        <br>
+    
           <div class="form-floating mb-3">
             <input class="form-control" type="text" id="idperson_this_party" name="idperson_this_party" placeholder="xxxxxxxx">
-            <label for="idperson_this_party">Seu ID:</label>
+            <label for="idperson_this_party">Seu Nº de ID:</label>
           </div>
           <div class="form-floating mb-3">
             <input class="form-control" type="text" id="iditem_give" name="iditem_give" placeholder="xxxxxxxx">
-            <label for="iditem_give">ID do item oferecido:</label>
+            <label for="iditem_give">Nº de ID do item que você quer dar:</label>
           </div>
           <div class="form-floating mb-3">
             <input class="form-control" type="text" id="idperson_other_party" name="idperson_other_party" placeholder="xxxxxxxx">
-            <label for="iditem_receive">Nº do ID do receptor:</label>
+            <label for="iditem_receive">Nº de ID da outra pessoa :</label>
           </div>
           <div class="form-floating mb-3">
             <input class="form-control" type="text" id="iditem_receive" name="iditem_receive" placeholder="xxxxxxxx">
-            <label for="iditem_receive">Nº ID do item desejado:</label>
+            <label for="iditem_receive">Nº ID de item que você quer receber:</label>
           </div> 
           <button type="submit" class="button-submit">Enviar</button>
 
@@ -67,18 +88,18 @@
       if (selectedOption === "Doando") {
         idItemGiveInput.disabled = false;
         idItemGiveInput.readOnly = false;
-        idItemGiveInput.value = "";
   
+        //idItemReceiveInput.value = "Não se aplica";
+        idItemReceiveInput.value = "";
         idItemReceiveInput.readOnly = true;
-        idItemReceiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
         // idItemReceiveInput.disabled = true;
       } else if (selectedOption === "Recebendo"){
         idItemReceiveInput.disabled = false;
         idItemReceiveInput.readOnly = false;
-        idItemReceiveInput.value = "";
-  
+
+        //idItemGiveInput.value = "Não se aplica";
+        idItemGiveInput.value = "";
         idItemGiveInput.readOnly = true;
-        idItemGiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
         // idItemGiveInput.disabled = true;
       }
     });
