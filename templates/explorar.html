@@ -40,6 +40,7 @@
               {% if item.image_blob != none or None %}
             <div class="imagem-wrapper ">
               <img src="data:image/jpeg;base64,{{ item.image_blob.decode('utf-8') | safe }}" class="imagem" alt="">
+              <img src="data:image/jpeg;,{{ item.image_blob | safe }}" class="imagem" alt="">
             </div>
             {% else %}
             <div class="imagem-wrapper ">

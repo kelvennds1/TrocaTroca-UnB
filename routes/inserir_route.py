@@ -41,8 +41,9 @@ def inserir():
             filename = file.filename
             file_type = file.content_type
             file_data = file.read()
-            img_64 = base64.b64encode(file_data) 
-            img_64 = img_64.decode('utf-8')
+            # img_64 = base64.b64encode(file_data) 
+            # img_64 = img_64.decode('utf-8')
+            print(img_64)
 
             # Salvar o conteúdo binário da imagem no atributo image_blob do objeto Item
             new_item.image_blob = file_data
