@@ -109,6 +109,7 @@
         <a href="anuncios.html">Anúncios</a>
         <a href="minha_conta.html">Minha Conta</a>
         <a href="{{ url_for('swap.swap') }}">Registrar Troca</a>
+        <a href="{{ url_for('itens_bp.visualizar_itens', user_id=session['user_id']) }}">Meus itens</a>
         <a href="/logout">Logout</a>
         <a href="#">Feedback</a>
       </div>

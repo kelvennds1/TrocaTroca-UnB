@@ -12,6 +12,7 @@ from routes.swap_route import swap_bp
 from routes.explorar_route import explorar_bp
 from routes.anuncio_route import anuncio_bp
 from routes.inserir_route import inserir_bp
+from routes.view_item import itens_bp
 from trocatroca0_orm import *
 import ssl
 import base64
@@ -38,6 +39,7 @@ app.register_blueprint(swap_bp)
 app.register_blueprint(explorar_bp)
 app.register_blueprint(anuncio_bp)
 app.register_blueprint(inserir_bp)
+app.register_blueprint(itens_bp)
 # app.register_blueprint(explorar_bp)
 
 
