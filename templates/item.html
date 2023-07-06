@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Item Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Image Path</th>
+                <th>Model Color</th>
+                <th>Brand Species</th>
+                <th>Year Acquired</th>
+                <th>Description</th>
+                <th>Condition</th>
+                <th>Vaccines</th>
+                <th>Likes</th>
+                <th>Dislikes</th>
+                <th>Category ID</th>
+                <th>Img b64</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- {% set img_count = 0 -%} -->
+                <td>{{ item.iditem }}</td>
+                <td>{{ item.name or '-' }}{{ item.name or '-' }}</td>
+                
+                <td>{{ item.model_color or '-' }}</td>
+                <td>{{ item.brand_species or '-' }}</td>
+                <td>{{ item.year_acquired or '-' }}</td>
+                <td>{{ item.desc or '-' }}</td>
+                <td>{{ item.condition or '-' }}</td>
+                <td>{{ item.vaccines or '-' }}</td>
+                <td>{{ item.likes or '-' }}</td>
+                <td>{{ item.dislikes or '-' }}</td>
+                <td>{{ item.category_idcategory or '-' }}</td>
+                <td>{{ item.image_blob or '-' }}</td>
+            </tr>
+        </tbody>
+    </table>
+        {{image_base64}}
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <!-- {% if image_base64 %} -->
+        <img src="data:image/jpeg;base64,{{ image_base64 | safe }}" alt="Item Image">
+    <!-- {% else %} -->
+        <p>No image found</p>
+    <!-- {% endif %} -->
+<tbody>

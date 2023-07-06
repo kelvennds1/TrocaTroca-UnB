@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles/swap.css">
+  <link rel="stylesheet" href="/static/bootstrap-5.0.2-dist/css/bootstrap.css">
+  <script src="/static/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<<<<<<< HEAD
+  <div class="wrapper">
+    <header>
+      <div class="back-button">
+        <a href="/home"><img class="back-button-img" alt="" src="../static/img/back-button.svg" /></a>
+      </div>
+      <p class="troca-troca">TrocaTroca</p>
+    </header>
+    <div class="swap-container">
+      <h3 class="tittle">Registrar transação</h3>
+      <form method="POST" action="/swap">
+        <div class="input-container">
+       
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="idperson_this_party" name="idperson_this_party" placeholder="xxxxxxxx">
+            <label for="idperson_this_party">Seu ID:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="iditem_give" name="iditem_give" placeholder="xxxxxxxx">
+            <label for="iditem_give">ID do item oferecido:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="idperson_other_party" name="idperson_other_party" placeholder="xxxxxxxx">
+            <label for="iditem_receive">Nº do ID do receptor:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="iditem_receive" name="iditem_receive" placeholder="xxxxxxxx">
+            <label for="iditem_receive">Nº ID do item desejado:</label>
+          </div> 
+          <button type="submit" class="button-submit">Enviar</button>
+=======
+    <div wrapper>
+        <header>
+            <div class="back-button">
+                <!-- <div class="back-button-child"></div> -->
+                <img class="back-button-img" alt="" src="../static/img/back-button.svg" />
+                <!-- <a href="/login" class="back-link"></a> -->
+            </div>
+
+            <div class="tag-superior">
+              <div class="troca-troca">TrocaTroca</div>
+              <img class="image-logo" src="/static/img/logo_trocatroca.svg" alt="logo">
+            </div>
+        </header>
+
+        <div class="box-bordy">
+          <div class="register-text">Registrar transação</div>
+          <form method="POST" action="/swap">
+            <div class="input-container">
+              <label for="iditem_receive">seu ID:</label>
+              <input class="input-caracter" type="text" id="idperson_this_party" name="idperson_this_party">         
+              <label for="iditem_give">Digite o ID do item que você dará em troca:</label>
+              <input class="input-caracter" type="text" id="iditem_give" name="iditem_give">
+              <label for="iditem_receive">Digite o nº do ID do receptor:</label>
+              <input class="input-caracter" type="text" id="idperson_other_party" name="idperson_other_party">  
+              <label for="iditem_receive">Digite o ID do item desejado:</label>
+              <input class="input-caracter" type="text" id="iditem_receive" name="iditem_receive">   
+              <button type="submit" class="button-submit">Submit</button>
+            </div>
+          </form>
+>>>>>>> 3a9b673e7be078f3c790177e03ed88979d0bbbbd
+        </div>
+      </form>
+    </div>
+    {# // deactivate input fields based on transaction type select #}
+    <script>
+    const swapTypeSelect = document.getElementById("swap_type");
+    const doacaoSection = document.getElementById("doacao-section");
+    const doacaoPartyTypeSelect = document.getElementById("donation_party_type");
+    const idItemGiveInput = document.getElementById("iditem_give");
+    const idItemReceiveInput = document.getElementById("iditem_receive");
+  
+    // Handle swap type change
+    swapTypeSelect.addEventListener("change", function() {
+      const selectedOption = swapTypeSelect.options[swapTypeSelect.selectedIndex].value;
+  
+      if (selectedOption === "doacao") {
+        doacaoSection.style.display = "block";
+      } else {
+        doacaoSection.style.display = "none";
+      }
+    });
+  
+    // Disable input fields for donation based on selected party type
+    doacaoPartyTypeSelect.addEventListener("change", function() {
+      const selectedOption = doacaoPartyTypeSelect.options[doacaoPartyTypeSelect.selectedIndex].value;
+      if (selectedOption === "Doando") {
+        idItemGiveInput.disabled = false;
+        idItemGiveInput.readOnly = false;
+        idItemGiveInput.value = "";
+  
+        idItemReceiveInput.readOnly = true;
+        idItemReceiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
+        // idItemReceiveInput.disabled = true;
+      } else if (selectedOption === "Recebendo"){
+        idItemReceiveInput.disabled = false;
+        idItemReceiveInput.readOnly = false;
+        idItemReceiveInput.value = "";
+  
+        idItemGiveInput.readOnly = true;
+        idItemGiveInput.value = PLACEHOLDER_KEY_FOR_DONATION;
+        // idItemGiveInput.disabled = true;
+      }
+    });
+  </script>
+  
+    {#  // redirects 1st party to success when 2nd party registers rtansaction #}
+    <script>
+      function checkSwapStatus() {
+        fetch('/swap_status')
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              window.location.href = '/swap_success';
+            } else if (data.status === 'pending') {
+              pass
+            } else {
+            window.location.href = '/swap_fail';
+            }
+          });
+      }
+      setInterval(checkSwapStatus, 5000000);
+    </script>
+
+      <div class="waves-container">
+        <img src="../static/img/Vector.svg" alt="">
+      </div>
+    </div>
+  </body>
+</html>

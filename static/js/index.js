@@ -2,5 +2,5 @@
 setTimeout(function() {
     // Redirecione para a página de login
     window.location.href = "login";
-  }, 3000);
+  }, 1000);
   
