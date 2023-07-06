@@ -11,6 +11,7 @@ from routes.home_route import home_bp
 from routes.swap_route import swap_bp
 from routes.explorar_route import explorar_bp
 from routes.anuncio_route import anuncio_bp
+from routes.inserir_route import inserir_bp
 from trocatroca0_orm import *
 import ssl
 import base64
@@ -36,6 +37,7 @@ app.register_blueprint(home_bp)
 app.register_blueprint(swap_bp)
 app.register_blueprint(explorar_bp)
 app.register_blueprint(anuncio_bp)
+app.register_blueprint(inserir_bp)
 # app.register_blueprint(explorar_bp)
 
 
@@ -58,13 +60,6 @@ def explorar(tipo=None):
         items = sessio.query(Item).all()
     return render_template('explorar.html', items=items)
 
-
-
-
-
-@app.route('/inserir')
-def inserir():
-    return render_template('inserir_anuncio.html')
     
 # testa display de item, imagem
 @app.route('/itemunicoid<int:iditem>')

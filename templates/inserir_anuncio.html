@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Inserir Anúncio</title>
-  <link rel="stylesheet" type="text/css" href="../static/styles/inserir_anuncio.css">
-  <script src="../static/js/inserir.js"></script>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/styles/inserir_anuncio.css" />
+    <script src="../static/js/inserir.js"></script>
+  </head>
 <body>
   <div class="wrapper">
   <header>
@@ -14,8 +15,7 @@
     <p class="troca-troca">TrocaTroca</p>
   </header>
   <h1>O que você está anunciando?</h1>
-  
-  <form id="ad-form">
+  <form method="POST" action="/inserir">
     <label for="title">Título:</label>
     <input type="text" id="title" name="title" required>
     
@@ -25,10 +25,9 @@
     <label for="category">Categoria:</label>
     <select id="category" name="category" onchange="checkCategory()" required>
       <option value="">Selecione uma categoria</option>
-      <option value="eletrônicos">Eletrônicos</option>
-      <option value="vestuário">Vestuário</option>
-      <option value="móveis">Móveis</option>
-      <option value="animais">Animais</option>
+      {% for categoria in categorias %}
+      <option value="{{ categoria.idcategory }}">{{ categoria.name }}</option>
+      {% endfor %}
       <!-- Adicione mais opções de categorias, se necessário -->
     </select>
     
@@ -49,9 +48,9 @@
     <label for="year">Ano Adquirido:</label>
     <select id="year" name="year">
       <option value="">Selecione o ano de aquisição</option>
-      <option value="2022">2022</option>
-      <option value="2021">2021</option>
-      <option value="2020">2020</option>
+      {% for ano in anos %}
+      <option value="{{ ano }}">{{ ano }}</option>
+      {% endfor %}
       <!-- Adicione mais opções de anos, se necessário -->
     </select>
     

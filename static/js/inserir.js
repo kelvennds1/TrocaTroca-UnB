@@ -5,7 +5,7 @@ function checkCategory() {
     var brandLabel = document.getElementById("brand-label");
     var brandInput = document.getElementById("brand");
 
-    if (categorySelect.value === "animais") {
+    if (categorySelect.value === "28") {
     raceLabel.style.display = "block";
     raceInput.style.display = "block";
     brandLabel.style.display = "none";
