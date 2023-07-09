@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
 # ---------------------------------------- Importar as classes relevantes ------------------------------------------------------
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from routes.register_route import registro_bp # Importe o blueprint de registro
@@ -14,8 +13,6 @@ from routes.anuncio_route import anuncio_bp
 from routes.inserir_route import inserir_bp
 from routes.view_item import itens_bp
 from trocatroca0_orm import *
-import ssl
-import base64
 #------------------------------------------------ Criar App -------------------------------------------------------------
 app = Flask(__name__, template_folder='templates')
 
@@ -48,20 +45,6 @@ app.secret_key = '342342354525351sadad1eqd'  # Chave secreta para gerar sessões
 # Configure o banco de dados
 engine = create_engine('mysql+pymysql://admin:troca2023@trocatroca-db.co7hqdo9x7ll.us-east-1.rds.amazonaws.com:3306/trocatroca0')
 Session = sessionmaker(bind=engine)
-
-
-@app.route('/explorar', methods=['GET', 'POST'])
-@app.route('/explorar/<tipo>', methods=['GET', 'POST'])
-def explorar(tipo=None):
-    sessio = Session()
-    if tipo:
-        # Filtrar os itens por tipo (troca ou doação)
-        items = sessio.query(Item).filter_by(item_type=tipo).filter(Item.name != "DONATION_PLACEHOLDER").all()
-    else:
-        # Carregar todos os itens
-        items = sessio.query(Item).filter(Item.name != "DONATION_PLACEHOLDER").all()
-    return render_template('explorar.html', items=items)
-
     
 # testa display de item, imagem
 @app.route('/itemunicoid<int:iditem>')
@@ -81,8 +64,6 @@ def display_item(iditem):
 # pagina de anuncio de troca 
 
 if __name__ == '__main__':
-    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    context.load_cert_chain('localhost.pem', 'localhost-key.pem')
     app.run(debug=True, host='0.0.0.0')
 
 
