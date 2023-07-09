@@ -12,14 +12,14 @@ Session = sessionmaker(bind=engine)
 sessio = Session()
 
 # Nota: me parece que isso foi inutilizado e esta quebrado
-@anuncio_bp.route('/anuncio/<item_id>', methods=['GET', 'POST'])
-def anuncio():
-    item_id = request.args.get('item_id')
-    idanuncio = int(item_id) # !TODO: receive this as parameter
+
+
+
+@anuncio_bp.route('/anuncio/<int:item_id>', methods=['GET', 'POST'])
+def anuncio(item_id):
     db = Session()
-    item = db.query(Item).filter_by(iditem = idanuncio ).filter(Item.name != "DONATION_PLACEHOLDER").first()
+    item = db.query(Item).filter_by(iditem=item_id).filter(Item.name != "DONATION_PLACEHOLDER").first()
     all_items = db.query(Item).filter(Item.name != "DONATION_PLACEHOLDER").all()
 
     return render_template('anuncio.html', item=item, items=all_items)
-
 
