@@ -14,4 +14,4 @@ Neste trabalho, temos o objetivo de criar uma página web voltada para a sustent
  - AWS RDS, S3
 
 
-## Como contriubuir no projeto:
+## Como rodar o projeto:
