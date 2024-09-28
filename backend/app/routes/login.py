@@ -7,7 +7,13 @@ from app.auth import create_access_token, verify_password
 
 router = APIRouter()
 
-@router.post("/login", response_model=Token)
+@router.post(
+    "/login",
+    response_model=Token,
+    summary="Login para obter um token JWT",
+    description="Realiza o login do usuário e retorna um token JWT para autenticação em rotas protegidas.",
+    tags=["Autenticação"],
+)
 def login(user_login: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == user_login.email).first()
     if not user or not verify_password(user_login.password, user.password_hash):
