@@ -1,70 +1,19 @@
-# -*- coding: utf-8 -*-
-# ---------------------------------------- Importar as classes relevantes ------------------------------------------------------
-from flask import Flask, render_template, request
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from routes.register_route import registro_bp # Importe o blueprint de registro
-from routes.login_route import login_bp
-from routes.logout_route import logout_bp
-from routes.home_route import home_bp
-from routes.swap_route import swap_bp
-from routes.explorar_route import explorar_bp
-from routes.anuncio_route import anuncio_bp
-from routes.inserir_route import inserir_bp
-from routes.view_item import itens_bp
-from trocatroca0_orm import *
-#------------------------------------------------ Criar App -------------------------------------------------------------
-app = Flask(__name__, template_folder='templates')
-
-#-------------------------------------------- Importando Rotas ------------------------------------------------------------
-@app.before_request
-def activate_service_worker():
-    # Definir as configurações para o Service Worker
-    request.environ['wsgi.url_scheme'] = 'https'
-    request.environ['HTTP_SERVICE_WORKER_ALLOWED'] = '/'
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    # Rota principal
-    return render_template('index.html')
-
-app.register_blueprint(registro_bp)  # Registrar o blueprint de registro na aplicação Flask
-app.register_blueprint(login_bp)
-app.register_blueprint(logout_bp)
-app.register_blueprint(home_bp)
-app.register_blueprint(swap_bp)
-app.register_blueprint(explorar_bp)
-app.register_blueprint(anuncio_bp)
-app.register_blueprint(inserir_bp)
-app.register_blueprint(itens_bp)
-# app.register_blueprint(explorar_bp)
-
-
-app.secret_key = '342342354525351sadad1eqd'  # Chave secreta para gerar sessões seguras
-
-# Configure o banco de dados
-engine = create_engine('mysql+pymysql://admin:troca2023@trocatroca-db.co7hqdo9x7ll.us-east-1.rds.amazonaws.com:3306/trocatroca0')
-Session = sessionmaker(bind=engine)
-    
-# testa display de item, imagem
-@app.route('/itemunicoid<int:iditem>')
-def display_item(iditem):
-    db = Session()
-    item = db.query(Item).filter_by(iditem=iditem).first()
-    db.close()
-    try:
-        image_decoded = item.image_blob.decode('utf-8')
-        #image_decoded = base64.b64decode(image_decoded)
-    except Exception as e:
-        print(e)
-        image_decoded ='"img 🫥"'
-    return render_template('item.html', item=item, image_base64=image_decoded)
-    
-
-# pagina de anuncio de troca 
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+from fastapi import FastAPI
+from app.database import engine, Base
+from app.routes import user, category, item, swap, login
 
 
 
+app = FastAPI()
+
+Base.metadata.create_all(bind=engine)
+
+app.include_router(user.router, prefix="/api/users")
+app.include_router(category.router, prefix="/api/categories")
+app.include_router(item.router, prefix="/api/items")
+app.include_router(swap.router, prefix="/api/swaps")
+app.include_router(login.router, prefix="/api/auth")
+
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the TrocaTroca API!"}
