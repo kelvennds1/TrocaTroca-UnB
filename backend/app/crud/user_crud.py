@@ -5,14 +5,16 @@ from app.models import User
 from app.schemas import UserCreate, UserRead
 from fastapi import HTTPException
 
+from app.auth import hash_password
+
 def create_user(db: Session, user: UserCreate) -> User:
     # Verificação de email único
     if db.query(User).filter(User.email == user.email).first():
         raise HTTPException(status_code=400, detail="Email already registered")
-
+    hashed_password = hash_password(user.password_hash)
     db_user = User(
         registration=user.registration,
-        password_hash=user.password_hash,
+        password_hash=hashed_password,
         name=user.name,
         user_name=user.user_name,
         email=user.email,
@@ -38,9 +40,11 @@ def update_user(db: Session, user_id: int, user: UserCreate) -> User:
     # Verificar se o email já está em uso por outro usuário
     if db.query(User).filter(User.email == user.email).first() and db_user.email != user.email:
         raise HTTPException(status_code=400, detail="Email already registered")
-
+    
+  
     db_user.registration = user.registration
-    db_user.password_hash = user.password_hash
+    if user.password_hash:  # Verifica se a senha foi fornecida para atualização
+        db_user.password_hash = hash_password(user.password_hash)  # Hash da nova senha
     db_user.name = user.name
     db_user.user_name = user.user_name
     db_user.email = user.email
