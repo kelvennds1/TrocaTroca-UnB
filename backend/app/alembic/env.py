@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from backend.main import DATABASE_URL  # importe a URL do banco de dados
+from backend.app.main import DATABASE_URL  # importe a URL do banco de dados
 from models import Base
 
 
